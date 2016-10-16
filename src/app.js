@@ -321,7 +321,7 @@ function event_eventbrite(locate, sender){
 				else if(numofevents >=10){
 						numofevents = 10;
 					}
-					var elements = [];
+					var elementsar = [];
 					var messageData = [];
 						for(var ie=0;ie<numofevents;ie++){
 						
@@ -334,7 +334,7 @@ function event_eventbrite(locate, sender){
 									eventbrite.logo.url = "https://en.wikipedia.org/wiki/Smiley#/media/File:Smiley.svg";
 									//CHANGE THIS TO myTHCGuide logo once we choose one!
 								}
-							elements.push({
+							elementsar.push({
 									title: etitle,
 									subtitle: edate,
 									item_url: elink,               
@@ -355,7 +355,7 @@ function event_eventbrite(locate, sender){
 								type: "template",
 								payload: {
 								  template_type: "generic",
-								  elements
+								  elements: elementsar
 								}
 							  }
 							}
