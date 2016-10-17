@@ -310,8 +310,11 @@ function event_eventbrite_apicall(location){
 				var ebrite = JSON.parse(body);
 				console.log(ebrite.error_description + " - is the Eventbrite error");
 			  }
+			  else{
+				var eventcall = JSON.parse(body);	
+				}				
 			 });
-			 var eventcall = JSON.parse(body);
+
 			 return (eventcall);
 }
 
