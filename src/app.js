@@ -325,9 +325,13 @@ function event_eventbrite(location){
 					*/
 					console.log("this is the body variable, but parsed " + JSON.parse(eventbapi)); //shows object Object.  nothing else
 					console.log("this is the body variable, but stringified " + JSON.stringify(eventbapi));  //shows long json in string form
-					var bb1 = JSON.parse(eventbapi);
+					var bb1 = JSON.parse(eventbapi); //turned this into an object.
 					console.log("parse with object notation " + bb1.events);
-
+					console.log("parse with object notation for an event name " + bb1.events[0].name.text);
+					var bb2 = JSON.stringify(eventbapi);
+					console.log("stringify with object notation " + bb2.events);
+					console.log("stringify with array notation " + bb2[events][0][name][text]);
+					
 					/*
 					if (eventbrite){
 					return ("topvalue2");
