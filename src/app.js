@@ -313,16 +313,59 @@ function event_eventbrite(location){
 			  else{
 				var eventbapi = body;
 				var bb1 = JSON.parse(eventbapi); 
-				console.log("event name is " + bb1.events[0].name.text);
-				//console.log("var eventbrite =  " + bb1.events);  //Doesnt work.
-				console.log("number of events is " + bb1.events.length);
-				console.log("logo code is " + bb1.events[0].logo.url);
-				console.log("start time is " + bb1.events[0].start.local);
-				console.log("event url is " + bb1.events[0].url);
+				var numofevents = bb1.events.length;
+					
+				if (numofevents <=0)    {
+					//find some way to inform my NLP that the events are zero & write multiple responses for it
+					//context.sendResponse("Eventbrite returned zero events in this area, unfortunately");
+					//insert meetup function here to search meetup to find events since eventbrite doesn't have any
+				}
+				else if(numofevents >=10){
+						numofevents = 10;
+					}
+					
+				var elementsar = [];
+				var messageData = [];
+					for(var ie=0;ie<numofevents;ie++){
+					
+						var eimage = bb1.events[ie].logo.url;
+						var etitle = bb1.events[ie].name.text;
+						var edate = bb1.events[ie].start.local;
+						var elink = bb1.events[ie].url;
 
-				}				
+							if(!bb1.events[ie].logo.url){
+								eventbrite.logo.url = "https://en.wikipedia.org/wiki/Smiley#/media/File:Smiley.svg";
+								//CHANGE THIS TO myTHCGuide logo once we choose one!
+							}
+						elementsar.push({
+								title: etitle,
+								subtitle: edate,
+								item_url: elink,               
+								image_url: eimage,
+								buttons: [{
+								  type: "web_url",
+								  url: elink,
+								  title: "More Info"
+								}]
+								});
+					}
+					messageData = {
+						recipient: {
+						  id: senduser
+						},
+						message: {
+						  attachment: {
+							type: "template",
+							payload: {
+							  template_type: "generic",
+							  elements: elementsar
+							}
+						  }
+						}
+					  };					
+				}// close of else statement				
 			 });
-
+return ("this is the end of the function");
 
 }
 
