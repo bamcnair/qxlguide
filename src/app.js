@@ -310,7 +310,7 @@ function event_eventbrite_apicall(location){
 				console.log(ebrite.error_description + " - is the Eventbrite error");
 			  }
 			 });
-			 return (response);
+			 return (eventcall);
 }
 
 function event_eventbrite(locate, senduser){
