@@ -48,13 +48,14 @@ function processEvent(event) {
 				/*
 				First Alteration of code.  Adding if action = find_event then alter the response text.
 				*/
-			var eventcity = response.result.contexts[0].parameters.geo-city;
-            var eventzipcode = response.result.contexts[0].parameters.zip-code;
-            var searchservice = response.result.contexts[0].parameters.event_service;
-			var loc = "";
-			var eventbritecarosel = "";
-			
-				if(action == "find_events"){
+
+				if(action == "find_events"){				
+					var eventcity = response.result.contexts[0].parameters.geo-city;
+					var eventzipcode = response.result.contexts[0].parameters.zip-code;
+					var searchservice = response.result.contexts[0].parameters.event_service;
+					var loc = "";
+					var eventbritecarosel = "";
+
 					if(eventcity && searchservice == "eventbrite"){
 						/*
 						loc = eventcity;
