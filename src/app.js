@@ -316,16 +316,16 @@ function event_eventbrite_apicall(location){
 function event_eventbrite(locate, senduser){
 
 	var ebody = event_eventbrite_apicall(locate);
-	if (ebody){
-	return ("topvalue");
-	}
 
-	/*
 				var eventbapi = JSON.parse(ebody);
 				var eventbrite = eventbapi.events;
 				var numofevents = eventbrite.length;
 				//This code checks if events are available from eventbrite.  If num of events is zero, there's nothing to show
-            
+				
+					if (ebody){
+					return ("topvalue2");
+					}
+ 	/*           
 				if (numofevents <=0)    {
 					//find some way to inform my NLP that the events are zero & write multiple responses for it
 					//context.sendResponse("Eventbrite returned zero events in this area, unfortunately");
@@ -376,7 +376,7 @@ function event_eventbrite(locate, senduser){
 
 		
 		//return (messageData);
-		return ("bottomvalue");
+		return ("bottomvalue2");
 	}	
 
 /**
