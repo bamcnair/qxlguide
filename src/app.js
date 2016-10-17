@@ -296,9 +296,9 @@ input, to log those requests, and to find out how the users behave.
 This method is to find events through the eventbrite API and returns them for user interaction
 //https://www.eventbrite.com/developer/v3/endpoints/events/
 **/
-function event_eventbrite(locate, sender){
+function event_eventbrite_apicall(location){
 
-		request({
+		var eventcall = request({
 		  url: 'https://www.eventbriteapi.com/v3/events/search/?token=7JHPO6VFBV5CQKPPIN3G&q=weed,cannabis,marijuana&sort_by=distance&location.within=30mi&location.address='+locate,
           headers: {
 				'Authorization' : 'Bearer 7JHPO6VFBV5CQKPPIN3G'
@@ -309,8 +309,19 @@ function event_eventbrite(locate, sender){
 				var ebrite = JSON.parse(body);
 				console.log(ebrite.error_description + " - is the Eventbrite error");
 			  }
+			 });
+			 return (eventcall);
+}
 
-				var eventbapi = JSON.parse(body);
+function event_eventbrite(locate, sender){
+
+	var ebody = event_eventbrite_apicall(locate);
+	if (ebody){
+	return ("the eventbrite function JSON ran successfully");
+	}
+
+	/*
+				var eventbapi = JSON.parse(ebody);
 				var eventbrite = eventbapi.events;
 				var numofevents = eventbrite.length;
 				//This code checks if events are available from eventbrite.  If num of events is zero, there's nothing to show
@@ -363,9 +374,9 @@ function event_eventbrite(locate, sender){
 						}
 					  }; */
 
-		});	
+		}
 		//return (messageData);
-		return ("this is from EVB function " + etitle + elink);
+		return ("function ran, but JSON didn't work");
 	}	
 
 /**
