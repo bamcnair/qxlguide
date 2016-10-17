@@ -51,8 +51,8 @@ function processEvent(event) {
 
 				if(action == "find_events"){				
 					var eventcity = "";
-					//var eventcity = response.result.contexts[0].parameters.geo-city;
-					var eventzipcode = response.result.contexts[0].parameters.zip-code;
+					var eventcity = response.result.contexts[0].parameters["geo-city"];
+					var eventzipcode = response.result.contexts[0].parameters["zip-code"];
 					var searchservice = response.result.contexts[0].parameters.event_service;
 					var loc = "";
 					var eventbritecarosel = "";
