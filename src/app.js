@@ -58,15 +58,15 @@ function processEvent(event) {
 
 					if(eventcity && searchservice == "eventbrite"){
 						loc = eventcity;
-						eventbritecarosel = event_eventbrite(loc, sender);
-						sendFBMessage(sender,eventbritecarosel);
-						responseText = responseText + " QXL city & event! " + eventbritecarosel;
+						//eventbritecarosel = event_eventbrite(loc, sender);
+						//sendFBMessage(sender,eventbritecarosel);
+						responseText = responseText + " QXL city & event! ";
 					}
 					else if(eventzipcode && searchservice == "eventbrite"){
 						loc = eventzipcode;
-						eventbritecarosel = event_eventbrite(loc, sender);
-						sendFBMessage(sender,eventbritecarosel);
-						responseText = responseText + " QXL zipcode & event " + eventbritecarosel;						
+						//eventbritecarosel = event_eventbrite(loc, sender);
+						//sendFBMessage(sender,eventbritecarosel);
+						responseText = responseText + " QXL zipcode & event ";						
 					} 
 					else if(searchservice == "meetup"){              
 						 //event_meetup(eventcity,eventzipcode);
