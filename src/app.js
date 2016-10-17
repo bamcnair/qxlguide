@@ -49,7 +49,8 @@ function processEvent(event) {
 				First Alteration of code.  Adding if action = find_event then alter the response text.
 				*/
 
-				if(action == "find_events"){				
+				if(action == "find_events"){	
+					//inputs from API.ai for knowing which calls to make afterwards
 					var eventcity = response.result.contexts[0].parameters["geo-city"];
 					var eventzipcode = response.result.contexts[0].parameters["zip-code"];
 					var searchservice = response.result.contexts[0].parameters.event_service;
@@ -65,7 +66,9 @@ function processEvent(event) {
 					else if(eventzipcode && searchservice == "eventbrite"){
 						loc = eventzipcode;
 						eventbritecarosel = event_eventbrite(loc, sender);
-						sendFBMessage(sender,eventbritecarosel);
+						//sendFBMessage(sender,eventbritecarosel);
+						console.log("here is the main function's output for the structured message " + event_eventbrite(loc,sender));
+						console.log("here is the same thing, but using the variable " + eventbritecarosel);
 						responseText = responseText + " QXL zipcode & event " + eventbritecarosel;		
 					} 
 					else if(searchservice == "meetup"){              
