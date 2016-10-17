@@ -314,7 +314,8 @@ function event_eventbrite_apicall(location){
 										console.log("error is " + error);
 										console.log("response is " + response);
 										console.log("body is " + body);
-							 return (body);
+							var eventcall = body;
+							 return (eventcall);
 				}				
 			 });
 
