@@ -314,8 +314,7 @@ function event_eventbrite_apicall(location){
 										console.log("error is " + error);
 										console.log("response is " + response);
 										console.log("body is " + body);
-				var eventcall = JSON.parse(response);	
-							 return (eventcall);
+							 return (body);
 				}				
 			 });
 
@@ -325,7 +324,7 @@ function event_eventbrite_apicall(location){
 function event_eventbrite(locate, senduser){
 
 	var ebody = event_eventbrite_apicall(locate);
-						console.log(ebody);
+						console.log("this is inside the regular function " + ebody);
 				//var eventbapi = JSON.parse(ebody);
 				//var eventbrite = eventbapi.events;
 				//var eventbrite = ebody.pagination;
