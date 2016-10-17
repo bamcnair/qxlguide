@@ -322,7 +322,7 @@ function event_eventbrite(location){
 					//console.log("this is the body variable, with the length property " + eventbapi.events.length);
 					//console.log("this is the body variable, but with length done array style " + eventbapi[events][length]);
 					console.log("this is just to see what this variable looks like " + eventbrite);
-					console.log("this is the body variable, but with array notation " + eventbapi
+					
 					if (eventbrite){
 					return ("topvalue2");
 					}
