@@ -313,7 +313,7 @@ function event_eventbrite(location){
 			  else{
 				var eventbapi = body;
 				var eventbrite = eventbapi.events;
-				var numofevents = JSON.stringify(body).events.length;	
+				var numofevents = JSON.stringify(eventbrite).length;	
 					console.log("this is eventbrite.length "+ numofevents);				
 					if (eventbrite){
 					return ("topvalue2");
