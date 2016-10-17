@@ -296,9 +296,9 @@ input, to log those requests, and to find out how the users behave.
 This method is to find events through the eventbrite API and returns them for user interaction
 //https://www.eventbrite.com/developer/v3/endpoints/events/
 **/
-function event_eventbrite(location){
+function event_eventbrite(location, senduser){
 
-
+console.log(" send user id at top of function " + senduser);
 		request({
 		  url: 'https://www.eventbriteapi.com/v3/events/search/?token=7JHPO6VFBV5CQKPPIN3G&q=weed,cannabis,marijuana&sort_by=distance&location.within=30mi&location.address='+location,
           headers: {
@@ -349,6 +349,7 @@ function event_eventbrite(location){
 								}]
 								});
 					}
+					}
 					messageData = {
 						recipient: {
 						  id: senduser
@@ -362,8 +363,7 @@ function event_eventbrite(location){
 							}
 						  }
 						}
-					  };					
-				}// close of else statement				
+					  };								
 			 });
 return ("this is the end of the function");
 
