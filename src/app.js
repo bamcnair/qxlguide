@@ -298,6 +298,8 @@ This method is to find events through the eventbrite API and returns them for us
 **/
 function event_eventbrite(location, senduser){
 
+				var elementsar = [];
+				var messageData = [];
 		request({
 		  url: 'https://www.eventbriteapi.com/v3/events/search/?token=7JHPO6VFBV5CQKPPIN3G&q=weed,cannabis,marijuana&sort_by=distance&location.within=30mi&location.address='+location,
           headers: {
@@ -323,8 +325,7 @@ function event_eventbrite(location, senduser){
 						numofevents = 10;
 					}
 					
-				var elementsar = [];
-				var messageData = [];
+
 					for(var ie=0;ie<numofevents;ie++){
 					
 						var eimage = bb1.events[ie].logo.url;
@@ -364,7 +365,7 @@ function event_eventbrite(location, senduser){
 						}
 					  };	console.log("This is the message array " + JSON.stringify(messageData));							
 			 });
-			 
+console.log("This is the message array but Right before the Return " + JSON.stringify(messageData));			 
 return (JSON.stringify(messageData));
 
 }
