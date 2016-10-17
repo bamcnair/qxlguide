@@ -60,13 +60,13 @@ function processEvent(event) {
 						loc = eventcity;
 						eventbritecarosel = event_eventbrite(loc, sender);
 						sendFBMessage(sender,eventbritecarosel);
-						responseText = responseText + " QXL city & event!";
+						responseText = responseText + " QXL city & event! " + eventbritecarosel;
 					}
 					else if(eventzipcode && searchservice == "eventbrite"){
 						loc = eventzipcode;
 						eventbritecarosel = event_eventbrite(loc, sender);
 						sendFBMessage(sender,eventbritecarosel);
-						responseText = responseText + " QXL zipcode & event";						
+						responseText = responseText + " QXL zipcode & event " + eventbritecarosel;						
 					} 
 					else if(searchservice == "meetup"){              
 						 //event_meetup(eventcity,eventzipcode);
