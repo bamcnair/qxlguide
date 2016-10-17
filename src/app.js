@@ -318,6 +318,9 @@ function event_eventbrite(location){
 					console.log("this is the body variable " + eventbapi);		
 					console.log("this is the body variable, but parsed " + JSON.parse(eventbapi));
 					console.log("this is the body variable, parsed, and with length " + JSON.parse(eventbapi).length);
+					console.log("this is the body variable, with the length property " + eventbapi.events.length);
+					console.log("this is the body variable, but with length done array style " + eventbapi[events][length]);
+					console.log("this is just to see what this variable looks like " + eventbrite);
 					if (eventbrite){
 					return ("topvalue2");
 					}
