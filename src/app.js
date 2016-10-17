@@ -374,7 +374,7 @@ function event_eventbrite(locate, sender){
 						}
 					  }; */
 
-		}
+		
 		//return (messageData);
 		return ("function ran, but JSON didn't work");
 	}	
