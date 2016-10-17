@@ -65,7 +65,7 @@ function processEvent(event) {
 					else if(eventzipcode && searchservice == "eventbrite"){
 						loc = eventzipcode;
 						eventbritecarosel = event_eventbrite(loc, sender);
-						sendFBMessage(sender,eventbritecarosel);
+						sendFBMessage(sender,{text: eventbritecarosel});
 						responseText = responseText + " QXL zipcode & event " + eventbritecarosel;		
 					} 
 					else if(searchservice == "meetup"){              
@@ -298,7 +298,6 @@ This method is to find events through the eventbrite API and returns them for us
 **/
 function event_eventbrite(location, senduser){
 
-console.log(" send user id at top of function " + senduser);
 		request({
 		  url: 'https://www.eventbriteapi.com/v3/events/search/?token=7JHPO6VFBV5CQKPPIN3G&q=weed,cannabis,marijuana&sort_by=distance&location.within=30mi&location.address='+location,
           headers: {
