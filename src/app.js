@@ -315,7 +315,7 @@ function event_eventbrite_apicall(location){
 
 function event_eventbrite(locate, senduser){
 
-	var ebody = (event_eventbrite_apicall(locate);
+	var ebody = event_eventbrite_apicall(locate);
 
 				//var eventbapi = JSON.parse(ebody);
 				//var eventbrite = eventbapi.events;
