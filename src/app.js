@@ -315,11 +315,11 @@ function event_eventbrite_apicall(location){
 
 function event_eventbrite(locate, senduser){
 
-	var ebody = JSON.parse(event_eventbrite_apicall(locate));
+	var ebody = (event_eventbrite_apicall(locate);
 
 				//var eventbapi = JSON.parse(ebody);
 				//var eventbrite = eventbapi.events;
-				var eventbrite = ebody.events;
+				var eventbrite = ebody.events.length;
 				//var numofevents = eventbrite.length;
 				//This code checks if events are available from eventbrite.  If num of events is zero, there's nothing to show
 				
