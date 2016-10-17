@@ -312,16 +312,22 @@ function event_eventbrite(location){
 			  }
 			  else{
 				var eventbapi = body;
-				var eventbrite = eventbapi.events;
-				var numofevents = response.length;	
-					console.log("this is eventbrite.length "+ numofevents);	
-					console.log("this is the body variable " + eventbapi);		
-					console.log("this is the body variable, but parsed " + JSON.parse(eventbapi));
-					console.log("this is the body variable, but stringified " + JSON.stringify(eventbapi));
-					console.log("this is the body variable, parsed, and with length " + JSON.parse(eventbapi).length);
+				/*var eventbrite = eventbapi.events; //undefined 
+				var numofevents = response.length;	//undefined
+					console.log("this is eventbrite.length "+ numofevents);	//undefined
+					console.log("this is the body variable " + eventbapi);	//shows long JSON string 
+					console.log("this is the body variable, but parsed " + JSON.parse(eventbapi)); //shows object Object.  nothing else
+					console.log("this is the body variable, but stringified " + JSON.stringify(eventbapi));  //shows long json in string form
+					console.log("this is the body variable, parsed, and with length " + JSON.parse(eventbapi).length); //undefined
 					//console.log("this is the body variable, with the length property " + eventbapi.events.length);
 					//console.log("this is the body variable, but with length done array style " + eventbapi[events][length]);
-					console.log("this is just to see what this variable looks like " + eventbrite);
+					console.log("this is just to see what this variable looks like " + eventbrite);  //undefined
+					*/
+					console.log("this is the body variable, but parsed " + JSON.parse(eventbapi)); //shows object Object.  nothing else
+					console.log("this is the body variable, but stringified " + JSON.stringify(eventbapi));  //shows long json in string form
+					var bb1 = JSON.parse(eventbapi);
+					console.log("parse with object notation " + bb1.events);
+
 					
 					if (eventbrite){
 					return ("topvalue2");
