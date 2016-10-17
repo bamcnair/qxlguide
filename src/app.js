@@ -320,7 +320,7 @@ function event_eventbrite(locate, senduser){
 				//var eventbapi = JSON.parse(ebody);
 				//var eventbrite = eventbapi.events;
 				var eventbrite = ebody.events;
-				var numofevents = eventbrite.length;
+				//var numofevents = eventbrite.length;
 				//This code checks if events are available from eventbrite.  If num of events is zero, there's nothing to show
 				
 					if (ebody.pagination){
