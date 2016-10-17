@@ -313,15 +313,13 @@ function event_eventbrite(location){
 			  else{
 				var eventbapi = body;
 				var bb1 = JSON.parse(eventbapi); 
-				console.log("parse with object notation for an event name " + bb1.events[0].name.text);
-				console.log("var eventbrite =  " + bb1.events);
+				console.log("event name is " + bb1.events[0].name.text);
+				//console.log("var eventbrite =  " + bb1.events);  //Doesnt work.
 				console.log("number of events is " + bb1.events.length);
-				
-					
-					/*
-					if (eventbrite){
-					return ("topvalue2");
-					}  */
+				console.log("logo code is " + bb1.events[0].logo.url);
+				console.log("start time is " + bb1.events[0].start.local);
+				console.log("event url is " + bb1.events[0].url);
+
 				}				
 			 });
 
