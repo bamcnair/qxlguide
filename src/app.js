@@ -305,7 +305,7 @@ function event_eventbrite(locate, sender){
 			},
 			method: 'GET'
 		},(error, response, body) => {
-			 if (!error && response.statusCode == 200) {
+			 if (!error && response.status_code == 200 || response.status_code == 400) {
 				var ebrite = JSON.parse(body);
 				console.log(ebrite.error_description + " - is the Eventbrite error");
 			  }
@@ -336,7 +336,7 @@ function event_eventbrite(locate, sender){
 								eventbrite.logo.url = "https://en.wikipedia.org/wiki/Smiley#/media/File:Smiley.svg";
 								//CHANGE THIS TO myTHCGuide logo once we choose one!
 							}
-						elementsar.push({
+					/*	elementsar.push({
 								title: etitle,
 								subtitle: edate,
 								item_url: elink,               
@@ -361,10 +361,11 @@ function event_eventbrite(locate, sender){
 							}
 						  }
 						}
-					  };
+					  }; */
 
 		});	
-		return (messageData);
+		//return (messageData);
+		return ("this is from EVB function " + etitle + elink);
 	}	
 
 /**
