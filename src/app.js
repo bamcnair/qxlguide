@@ -312,10 +312,11 @@ function event_eventbrite_apicall(location){
 			  }
 			  else{
 				var eventcall = JSON.parse(body);	
+							 return (eventcall);
 				}				
 			 });
 
-			 return (eventcall);
+
 }
 
 function event_eventbrite(locate, senduser){
