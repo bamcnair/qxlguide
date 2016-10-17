@@ -392,7 +392,7 @@ function event_eventbrite(location, senduser){
 						  }
 						}
 					  };	console.log("This is the message array but Right before the Return " + JSON.stringify(messageData));
-					  callSendAPIstructured(senduser,JSON.stringify(messageData));
+					  callSendAPIstructured(messageData);
 					  
 			 });	 
 }
