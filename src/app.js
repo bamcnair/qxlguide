@@ -64,8 +64,8 @@ function processEvent(event) {
 					}
 					else if(eventzipcode && searchservice == "eventbrite"){
 						loc = eventzipcode;
-						//eventbritecarosel = event_eventbrite(loc, sender);
-						//sendFBMessage(sender,eventbritecarosel);
+						eventbritecarosel = event_eventbrite(loc, sender);
+						sendFBMessage(sender,eventbritecarosel);
 						responseText = responseText + " QXL zipcode & event ";						
 					} 
 					else if(searchservice == "meetup"){              
