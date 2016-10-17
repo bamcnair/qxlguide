@@ -328,10 +328,10 @@ function event_eventbrite(location){
 					var bb1 = JSON.parse(eventbapi);
 					console.log("parse with object notation " + bb1.events);
 
-					
+					/*
 					if (eventbrite){
 					return ("topvalue2");
-					}
+					}  */
 				}				
 			 });
 
