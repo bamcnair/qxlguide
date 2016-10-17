@@ -59,16 +59,12 @@ function processEvent(event) {
 
 					if(eventcity && searchservice == "eventbrite"){
 						loc = eventcity;
-						//eventbritecarosel = event_eventbrite(loc, sender);
-						//sendFBMessage(sender,eventbritecarosel);
+						event_eventbrite(loc, sender);
 						responseText = responseText + " QXL city & event! ";
 					}
 					else if(eventzipcode && searchservice == "eventbrite"){
 						loc = eventzipcode;
-						eventbritecarosel = event_eventbrite(loc, sender);
-						//sendFBMessage(sender,eventbritecarosel);
-						console.log("here is the main function's output for the structured message " + event_eventbrite(loc,sender)); // undefined
-						console.log("here is the same thing, but using the variable " + eventbritecarosel); // undefined
+						event_eventbrite(loc, sender);
 						responseText = responseText + " QXL zipcode & event " + eventbritecarosel;		
 					} 
 					else if(searchservice == "meetup"){              
