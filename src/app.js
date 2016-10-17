@@ -50,7 +50,6 @@ function processEvent(event) {
 				*/
 
 				if(action == "find_events"){				
-					var eventcity = "";
 					var eventcity = response.result.contexts[0].parameters["geo-city"];
 					var eventzipcode = response.result.contexts[0].parameters["zip-code"];
 					var searchservice = response.result.contexts[0].parameters.event_service;
@@ -58,18 +57,15 @@ function processEvent(event) {
 					var eventbritecarosel = "";
 
 					if(eventcity && searchservice == "eventbrite"){
-						/*
 						loc = eventcity;
-						eventbritecarosel = event_eventbrite(loc, sender);
-						sendFBMessage(sender,eventbritecarosel);
-						*/
+						//eventbritecarosel = event_eventbrite(loc, sender);
+						//sendFBMessage(sender,eventbritecarosel);
 						responseText = responseText + " QXL city & event!";
 					}
 					else if(eventzipcode && searchservice == "eventbrite"){
-						/*loc = eventzipcode;
-						eventbritecarosel = event_eventbrite(loc, sender);
-						sendFBMessage(sender,eventbritecarosel);
-						*/
+						loc = eventzipcode;
+						//eventbritecarosel = event_eventbrite(loc, sender);
+						//sendFBMessage(sender,eventbritecarosel);
 						responseText = responseText + " QXL zipcode & event";						
 					} 
 					else if(searchservice == "meetup"){              
