@@ -310,7 +310,7 @@ function event_eventbrite_apicall(location){
 				console.log(ebrite.error_description + " - is the Eventbrite error");
 			  }
 			 });
-			 return (eventcall);
+			 return (response);
 }
 
 function event_eventbrite(locate, senduser){
@@ -319,7 +319,7 @@ function event_eventbrite(locate, senduser){
 
 				//var eventbapi = JSON.parse(ebody);
 				//var eventbrite = eventbapi.events;
-				var eventbrite = ebody.events.length;
+				var eventbrite = ebody.events;
 				//var numofevents = eventbrite.length;
 				//This code checks if events are available from eventbrite.  If num of events is zero, there's nothing to show
 				
