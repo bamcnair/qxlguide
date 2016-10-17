@@ -315,7 +315,8 @@ function event_eventbrite(location){
 				var eventbrite = eventbapi.events;
 				var numofevents = response.length;	
 					console.log("this is eventbrite.length "+ numofevents);	
-					console.log("this is the body variable " + eventbapi);					
+					console.log("this is the body variable " + eventbapi);		
+					console.log("this is the body variable, but parsed " + JSON.parse(eventbapi);)
 					if (eventbrite){
 					return ("topvalue2");
 					}
