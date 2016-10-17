@@ -66,7 +66,7 @@ function processEvent(event) {
 						loc = eventzipcode;
 						eventbritecarosel = event_eventbrite(loc, sender);
 						sendFBMessage(sender,eventbritecarosel);
-						responseText = responseText + " QXL zipcode & event ";						
+						responseText = responseText + " QXL zipcode & event " + eventbritecarosel;						
 					} 
 					else if(searchservice == "meetup"){              
 						 //event_meetup(eventcity,eventzipcode);
@@ -317,7 +317,7 @@ function event_eventbrite(locate, senduser){
 
 	var ebody = event_eventbrite_apicall(locate);
 	if (ebody){
-	return ("the eventbrite function JSON ran successfully");
+	return ("topvalue");
 	}
 
 	/*
@@ -376,7 +376,7 @@ function event_eventbrite(locate, senduser){
 
 		
 		//return (messageData);
-		return ("function ran, but JSON didn't work");
+		return ("bottomvalue");
 	}	
 
 /**
