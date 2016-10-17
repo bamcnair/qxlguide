@@ -67,8 +67,8 @@ function processEvent(event) {
 						loc = eventzipcode;
 						eventbritecarosel = event_eventbrite(loc, sender);
 						//sendFBMessage(sender,eventbritecarosel);
-						console.log("here is the main function's output for the structured message " + event_eventbrite(loc,sender));
-						console.log("here is the same thing, but using the variable " + eventbritecarosel);
+						console.log("here is the main function's output for the structured message " + event_eventbrite(loc,sender)); // undefined
+						console.log("here is the same thing, but using the variable " + eventbritecarosel); // undefined
 						responseText = responseText + " QXL zipcode & event " + eventbritecarosel;		
 					} 
 					else if(searchservice == "meetup"){              
@@ -367,7 +367,8 @@ function event_eventbrite(location, senduser){
 						  }
 						}
 					  };	console.log("This is the message array but Right before the Return " + JSON.stringify(messageData));
-					  return (JSON.stringify(messageData));
+					  sendFBMessage(sender,JSON.stringify(messageData));
+					  return ();
 			 });	 
 }
 
