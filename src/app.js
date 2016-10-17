@@ -66,7 +66,8 @@ function processEvent(event) {
 						loc = eventzipcode;
 						eventbritecarosel = event_eventbrite(loc, sender);
 						sendFBMessage(sender,eventbritecarosel);
-						responseText = responseText + " QXL zipcode & event " + eventbritecarosel;						
+						responseText = responseText + " QXL zipcode & event " + eventbritecarosel;		
+						console.log(eventbritecarosel);
 					} 
 					else if(searchservice == "meetup"){              
 						 //event_meetup(eventcity,eventzipcode);
