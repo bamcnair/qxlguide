@@ -364,7 +364,7 @@ function event_eventbrite(locate, sender){
 					  };
 
 		});	
-		return messageData;
+		return (messageData);
 	}	
 
 /**
