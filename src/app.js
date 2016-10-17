@@ -311,10 +311,8 @@ function event_eventbrite(location){
 				console.log(ebrite.error_description + " - is the Eventbrite error");
 			  }
 			  else{
-					var eventcall = body;
 				var eventbapi = body;
 				var eventbrite = eventbapi.events;
-				var eventbrite = ebody.pagination;
 				var numofevents = eventbrite.length;	
 					console.log("this is eventbrite.length "+ eventbrite.length);				
 					if (eventbrite){
