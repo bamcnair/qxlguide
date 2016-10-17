@@ -364,6 +364,7 @@ function event_eventbrite(location, senduser){
 						}
 					  };								
 			 });
+console.log("This is the message array " + messageData);			 
 return ("this is the end of the function");
 
 }
