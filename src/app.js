@@ -299,7 +299,7 @@ This method is to find events through the eventbrite API and returns them for us
 function event_eventbrite_apicall(location){
 
 		var eventcall = request({
-		  url: 'https://www.eventbriteapi.com/v3/events/search/?token=7JHPO6VFBV5CQKPPIN3G&q=weed,cannabis,marijuana&sort_by=distance&location.within=30mi&location.address='+locate,
+		  url: 'https://www.eventbriteapi.com/v3/events/search/?token=7JHPO6VFBV5CQKPPIN3G&q=weed,cannabis,marijuana&sort_by=distance&location.within=30mi&location.address='+location,
           headers: {
 				'Authorization' : 'Bearer 7JHPO6VFBV5CQKPPIN3G'
 			},
@@ -313,7 +313,7 @@ function event_eventbrite_apicall(location){
 			 return (eventcall);
 }
 
-function event_eventbrite(locate, sender){
+function event_eventbrite(locate, senduser){
 
 	var ebody = event_eventbrite_apicall(locate);
 	if (ebody){
@@ -361,7 +361,7 @@ function event_eventbrite(locate, sender){
 					}
 					messageData = {
 						recipient: {
-						  id: sender
+						  id: senduser
 						},
 						message: {
 						  attachment: {
