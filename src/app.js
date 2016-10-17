@@ -209,6 +209,31 @@ function sendFBSenderAction(sender, action, callback) {
     }, 1000);
 }
 
+function callSendAPIstructured(messageData) {
+  request({
+    uri: 'https://graph.facebook.com/v2.6/me/messages',
+    qs: {access_token: FB_PAGE_ACCESS_TOKEN},
+    method: 'POST',
+    json: messageData
+
+  }, function (error, response, body) {
+    if (!error && response.statusCode == 200) {
+      var recipientId = body.recipient_id;
+      var messageId = body.message_id;
+
+      if (messageId) {
+        console.log("Successfully sent message with id %s to recipient %s", 
+          messageId, recipientId);
+      } else {
+      console.log("Successfully called Send API for recipient %s", 
+        recipientId);
+      }
+    } else {
+      console.error("Failed calling Send API", response.statusCode, response.statusMessage, body.error);
+    }
+  });  
+}
+
 function doSubscribeRequest() {
     request({
             method: 'POST',
@@ -367,7 +392,7 @@ function event_eventbrite(location, senduser){
 						  }
 						}
 					  };	console.log("This is the message array but Right before the Return " + JSON.stringify(messageData));
-					  sendFBMessage(senduser,JSON.stringify(messageData));
+					  callSendAPIstructured(senduser,JSON.stringify(messageData));
 					  
 			 });	 
 }
