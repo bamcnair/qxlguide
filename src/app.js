@@ -377,7 +377,7 @@ function event_eventbrite(locate, senduser){
 
 		
 		//return (messageData);
-		return ("bottomvalue2");
+		return (ebody);
 	}	
 
 /**
