@@ -74,6 +74,10 @@ function processEvent(event) {
 				else if (action == "strain_menu"){
 				strain_menu(sender);
 				}
+				else if (action == "specific_strain"){
+				var strain_name = response.result.parameters.specific_strain;
+				specific_strain(strain_name,sender);
+				}				
 				else if (action == "the_greatness"){
 				responseText = responseText + " this is the greatness";
 				}
@@ -534,29 +538,87 @@ function event_meetup(mcity, mzipcode, senduser){
 This method is to find cannabis strain information based on a user provided strain name.  The user has to know the name of a specific strain 
 for this function to work
 **/
-function specific_strain(context,event){
+function specific_strain(cr_strain,cr_senduser){
 
 // https://developers.cannabisreports.com/docs/strains-search-query
 
 //grab the strain name from the user input, conduct a search, and present the options to the user to find out more about
 
-var specific_strain_name = "og";  //don't assign this variable in the production version, doing it here just to test.  do NOT assign this variable!!
-            context.simplehttp.makeGet("https://www.cannabisreports.com/api/v1.0/strains/search/" + specific_strain_name,null,function(context,event){
-			
-	        var strainnames = JSON.parse(event.getresp);
-			var numofstrains = strainnames.data.length;
-	        var name;
+				var elementscr = [];
+				var messageDatacr = [];
 
-	        for(var i=0;i<strainnames.data.length;i++){
-	            var obj = strainnames.data[i];
-	            var sname = obj.name;
-	            var simage = {"type":"image","originalUrl": obj.image ,"previewUrl": obj.image};
-	        }
-	        
+		request({
+		  url: 'https://www.cannabisreports.com/api/v1.0/strains/search/'+cr_strain,
+          headers: {
+				'X-API-Key' : 'c60873cc9da223d1d3a6c59ff19a72ba381e34d2'
+			},
+			method: 'GET'
+		},(error, response, body) => {
+			 if (response.status_code == 200 || response.status_code == 400) {
+				var cr_err = JSON.parse(body);
+				console.log(cr_err.message + " - is the Cannabis Reports error");
+			  }
+			  else{
+				var cr_respond = JSON.parse(body); 
+				var cr1 = cr_respond.data;
+				var numofstrains = cr_respond.meta.pagination.total;
+					
+				if (numofstrains <=0)    {
+					//find some way to inform my NLP that the events are zero & write multiple responses for it
+					//context.sendResponse("Eventbrite returned zero events in this area, unfortunately");
+					//insert meetup function here to search meetup to find events since eventbrite doesn't have any
+					/*
+					messageData = "There are no Eventbrite Events.  I'll search Meetup!";
+					sendFBMessage(senduser, messageData);
+					event_eventbrite(location, senduser);
+					return;
+					*/
+					}
+				else if(numofstrains == 1){
+				
+				}
+				else if(numofstrains >=7){
+				//Sets a large number of strains to 7 as to not return an annoying amount of results and stuff.  You know?  Of course you do.
+				//Also formats results as a carousel so users can easily find more information.  
+						numofstrains = 7;
+						
+					for(var is=0;is<numofstrains;is++){
+						var simage = cr1[is].image;
+						var sname = cr1[is].name;
+						var slink = cr1[is].url;
 
-	    });	  
-
+						elementscr.push({
+								title: sname,
+								//subtitle: edate,
+								item_url: slink,               
+								image_url: simage,
+								buttons: [{
+								  type: "web_url",
+								  url: slink,
+								  title: "More Info"
+								  }]
+						});
+					}
+					messageDatacr = {
+						recipient: {
+						  id: cr_senduser
+						},
+						message: {
+						  attachment: {
+							type: "template",
+							payload: {
+							  template_type: "generic",
+							  elements: elementscr
+							}
+						  }
+						}
+					  };	console.log("This is the message array but Right before the Return " + JSON.stringify(messageDatacr));
+					  callSendAPIstructured(messageDatacr);
+					 }
+					}					 
+			 });								
 }
+
 
 /**
 This method is to find a condition that a particular cannabis strain can help treat medically.  The user provides the condition, and we 
