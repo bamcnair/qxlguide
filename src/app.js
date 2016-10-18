@@ -417,6 +417,7 @@ function event_meetup(mcity, mzipcode, senduser){
 				var me1 = JSON.parse(meetuapi); 
 				var numofeventsm = me1.meta.total_count;
 				console.log("this is number of events " + numofeventsm);
+				console.log(meetuapi);
 					
 				if (numofeventsm <=0)    {
 					//find some way to inform my NLP that the events are zero & write multiple responses for it
