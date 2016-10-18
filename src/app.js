@@ -436,7 +436,7 @@ function event_meetup(mcity, mzipcode, senduser){
 					
 						var mimage = me1.results[im].group.photos.photo_link;  */
 						var mtitle = me1.results[im].name;
-						var mdate = me1.results[im].start.local;
+						//var mdate = me1.results[im].start.local;
 						var mlink = me1.results[im].event_url;
 
 					
