@@ -414,7 +414,7 @@ function event_meetup(mcity, mzipcode, senduser){
 		},(error, response, body) => {
 			 if (!error && (response.code == "bad_request" || response.code == "invalid_param")) {
 			 //be sure to validate if this error arrangement is going to work for meetup
-				var emeet = JSON.parse(body);
+				var emeet = JSON.parse(body); 
 			  }		
 			  else{
 				var meetuapi = body;
