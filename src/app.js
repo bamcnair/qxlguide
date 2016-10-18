@@ -428,15 +428,17 @@ function event_meetup(mcity, mzipcode, senduser){
 					}		
 					for(var im=0;im<numofeventsm;im++){
 					
+						if(!me1.results[im].group.photos.photo_link){
+						me1.results[im].group.photos.photo_link = "https://en.wikipedia.org/wiki/Smiley#/media/File:Smiley.svg";
+						//CHANGE THIS TO myTHCGuide logo once we choose one!
+					}
+					
 						var mimage = me1.results[im].group.photos.photo_link;
 						var mtitle = me1.results[im].name;
 						var mdate = me1.results[im].start.local;
 						var mlink = me1.results[im].event_url;
 
-							if(!me1.results[im].group.photos.photo_link){
-								me1.results[im].group.photos.photo_link = "https://en.wikipedia.org/wiki/Smiley#/media/File:Smiley.svg";
-								//CHANGE THIS TO myTHCGuide logo once we choose one!
-							}					
+					
 						elementsarm.push({
 								title: mtitle,
 								subtitle: mdate,
