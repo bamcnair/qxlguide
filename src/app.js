@@ -406,12 +406,11 @@ function event_meetup(mcity, mzipcode, senduser){
 
 		request({
 		  url: 'https://api.meetup.com/2/open_events?key=7b196b2b6510335c99242643b2a53&sign=true&topic=cannabis,weed,marijuana&zip='+location+'&radius=30',
-			,method: 'GET'
+			method: 'GET'
 		},(error, response, body) => {
 			 if (!error && (response.code == "bad_request" || response.code == "invalid_param")) {
 			 //be sure to validate if this error arrangement is going to work for meetup
 				var emeet = JSON.parse(body);
-				console.log(ebrite.error_description + " - is the Eventbrite error");
 			  }		
 			  else{
 				var meetuapi = body;
