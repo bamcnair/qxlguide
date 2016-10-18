@@ -549,9 +549,9 @@ function specific_strain(cr_strain,cr_senduser){
 
 		request({
 		  url: 'https://www.cannabisreports.com/api/v1.0/strains/search/'+cr_strain,
-          headers: {
-				'X-API-Key' : 'c60873cc9da223d1d3a6c59ff19a72ba381e34d2'
-			},
+        //  headers: {
+		//		'X-API-Key' : 'c60873cc9da223d1d3a6c59ff19a72ba381e34d2'
+		//	},
 			method: 'GET'
 		},(error, response, body) => {
 			 if (response.status_code == 200 || response.status_code == 400) {
