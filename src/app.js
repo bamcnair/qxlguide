@@ -72,7 +72,7 @@ function processEvent(event) {
 					}
 				}
 				else if (action == "strain_menu"){
-				strain_menu();
+				strain_menu(sender);
 				}
 				else if (action == "the_greatness"){
 				responseText = responseText + " this is the greatness";
