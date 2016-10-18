@@ -248,7 +248,7 @@ function strain_menu(recipientId) {
           elements: [{
             title: "How Would You Like to Search?",
             subtitle: "Search for cannabis strains by keyword or medical need",              
-            image_url: SERVER_URL + "/assets/rift.png",
+            image_url: "https://upload.wikimedia.org/wikipedia/commons/thumb/9/90/JfTabon%2C_San_Isidro%2C_Nueva_Ecijalands0088fvf_04.JPG/640px-JfTabon%2C_San_Isidro%2C_Nueva_Ecijalands0088fvf_04.JPG",
             buttons: [{
               type: "postback",
               title: "By Keyword",
@@ -488,7 +488,7 @@ function event_meetup(mcity, mzipcode, senduser){
 					for(var im=0;im<numofeventsm;im++){
 					/*
 						if(!me1.results[im].group.photos.photo_link){
-						me1.results[im].group.photos.photo_link = "https://en.wikipedia.org/wiki/Smiley#/media/File:Smiley.svg";
+						me1.results[im].group.photos.photo_link = "https://upload.wikimedia.org/wikipedia/commons/thumb/9/90/JfTabon%2C_San_Isidro%2C_Nueva_Ecijalands0088fvf_04.JPG/640px-JfTabon%2C_San_Isidro%2C_Nueva_Ecijalands0088fvf_04.JPG";
 						//CHANGE THIS TO myTHCGuide logo once we choose one!
 					}
 					
