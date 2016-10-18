@@ -444,7 +444,7 @@ function event_meetup(mcity, mzipcode, senduser){
 								title: mtitle,
 								//subtitle: mdate,
 								item_url: mlink,               
-								image_url: 'https://en.wikipedia.org/wiki/Smiley#/media/File:Smiley.svg', //mimage,
+								image_url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/9/90/JfTabon%2C_San_Isidro%2C_Nueva_Ecijalands0088fvf_04.JPG/640px-JfTabon%2C_San_Isidro%2C_Nueva_Ecijalands0088fvf_04.JPG', //mimage,
 								buttons: [{
 								  type: "web_url",
 								  url: mlink,
