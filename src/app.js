@@ -405,7 +405,7 @@ function event_meetup(mcity, mzipcode, senduser){
 				var messageDatam = [];
 
 		request({
-		  url: 'https://api.meetup.com/2/open_events?key=7b196b2b6510335c99242643b2a53&sign=true&topic=beer&zip='+mzipcode+'&radius=30&city='+mcity,
+		  url: 'https://api.meetup.com/2/open_events?key=7b196b2b6510335c99242643b2a53&sign=true&topic=weed,cannabis,marijuana&zip='+mzipcode+'&radius=30&city='+mcity,
 			method: 'GET'
 		},(error, response, body) => {
 			 if (!error && (response.code == "bad_request" || response.code == "invalid_param")) {
