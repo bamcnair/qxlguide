@@ -71,6 +71,9 @@ function processEvent(event) {
 						 event_meetup(eventcity, eventzipcode, sender);
 					}
 				}
+				else if (action == "strain_menu"){
+				strain_menu();
+				}
 				else if (action == "the_greatness"){
 				responseText = responseText + " this is the greatness";
 				}
@@ -230,6 +233,41 @@ function callSendAPIstructured(messageData) {
   });  
 }
 
+
+function strain_menu(recipientId) {
+
+ var messageData = {
+    recipient: {
+      id: recipientId
+    },
+    message: {
+      attachment: {
+        type: "template",
+        payload: {
+          template_type: "generic",
+          elements: [{
+            title: "How Would You Like to Search?",
+            subtitle: "Search for cannabis strains by keyword or medical need",              
+            image_url: SERVER_URL + "/assets/rift.png",
+            buttons: [{
+              type: "postback",
+              title: "By Keyword",
+              payload: specific_strain,
+            }, {
+              type: "postback",
+              title: "By Medical Need",
+              payload: strain_per_condition
+            }],
+          }]
+        }
+      }
+    }
+  };  
+
+  callSendAPIstructured(messageData);
+}
+
+
 function doSubscribeRequest() {
     request({
             method: 'POST',
@@ -344,10 +382,12 @@ function event_eventbrite(location, senduser){
 					//find some way to inform my NLP that the events are zero & write multiple responses for it
 					//context.sendResponse("Eventbrite returned zero events in this area, unfortunately");
 					//insert meetup function here to search meetup to find events since eventbrite doesn't have any
+					/*
 					messageData = "There are no Eventbrite Events.  I'll search Meetup!";
 					sendFBMessage(senduser, messageData);
 					event_eventbrite(location, senduser);
 					return;
+					*/
 					}
 				else if(numofevents >=10){
 						numofevents = 10;
@@ -427,7 +467,9 @@ function event_meetup(mcity, mzipcode, senduser){
 					//find some way to inform my NLP that the events are zero & write multiple responses for it
 					// make call to sendFBmessage that there are no events from this service, we will search the other one, then call eventbrite service
 					//context.sendResponse("Meet Up returned zero events in this area, unfortunately");
-					//insert eventbrite function here to search eventbrite to find events since meetup doesn't have any
+					//insert eventbrite function here to search eventbrite to find events since meetup doesn't have any, and make it stop if the 
+					//other service doesnt have any events either.
+					/*
 					messageDatam = "There are no Meetup Events.  I'll search eventbrite!";
 					sendFBMessage(senduser, messageDatam);
 					if(mcity){
@@ -438,7 +480,7 @@ function event_meetup(mcity, mzipcode, senduser){
 					event_eventbrite(mzipcode, senduser);
 					return;
 					}
-					
+					*/
 				}
 				else if(numofeventsm >=10){
 						numofeventsm = 10;
