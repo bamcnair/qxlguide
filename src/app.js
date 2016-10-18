@@ -554,7 +554,7 @@ function specific_strain(cr_strain,cr_senduser){
 		//	},
 			method: 'GET'
 		},(error, response, body) => {
-			 if (response.status_code == 200 || response.status_code == 400) {
+			 if (!error && response.status_code == 200 || response.status_code == 400) {
 				var cr_err = JSON.parse(body);
 				console.log(cr_err.message + " - is the Cannabis Reports error");
 			  }
