@@ -559,6 +559,7 @@ function specific_strain(cr_strain,cr_senduser){
 				console.log(cr_err.message + " - is the Cannabis Reports error");
 			  }
 			  else{
+			  console.log("this is the output " + body);
 				var cr_respond = JSON.parse(body); 
 				var cr1 = cr_respond.data;
 				var numofstrains = cr_respond.meta.pagination.total;
