@@ -252,11 +252,11 @@ function strain_menu(recipientId) {
             buttons: [{
               type: "postback",
               title: "By Keyword",
-              payload: specific_strain,
+              payload: "strain of weed"
             }, {
               type: "postback",
               title: "By Medical Need",
-              payload: strain_per_condition
+              payload: "medical condition"
             }],
           }]
         }
