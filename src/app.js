@@ -458,7 +458,7 @@ function event_meetup(mcity, mzipcode, senduser){
 							type: "template",
 							payload: {
 							  template_type: "generic",
-							  elements: elementsar
+							  elements: elementsarm
 							}
 						  }
 						}
