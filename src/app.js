@@ -349,8 +349,6 @@ function event_eventbrite(location, senduser){
 					event_eventbrite(location, senduser);
 					return;
 					}
-				
-				}
 				else if(numofevents >=10){
 						numofevents = 10;
 					}
