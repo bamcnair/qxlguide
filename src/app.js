@@ -76,6 +76,7 @@ function processEvent(event) {
 				}
 				else if (action == "specific_strain"){
 				var strain_name = response.result.parameters.specific_strain;
+				console.log("this is the strain name " + strain_name);
 				specific_strain(strain_name,sender);
 				}				
 				else if (action == "the_greatness"){
@@ -549,11 +550,12 @@ function specific_strain(cr_strain,cr_senduser){
 
 		request({
 		  url: 'https://www.cannabisreports.com/api/v1.0/strains/search/'+cr_strain,
-        //  headers: {
-		//		'X-API-Key' : 'c60873cc9da223d1d3a6c59ff19a72ba381e34d2'
-		//	},
+            headers: {
+				'X-API-Key' : 'c60873cc9da223d1d3a6c59ff19a72ba381e34d2'
+			},
 			method: 'GET'
 		},(error, response, body) => {
+		console.log("this is the body variable " + body);
 			 if (!error && response.status_code == 200 || response.status_code == 400) {
 				var cr_err = JSON.parse(body);
 				console.log(cr_err.message + " - is the Cannabis Reports error");
