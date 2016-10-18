@@ -68,7 +68,7 @@ function processEvent(event) {
 						responseText = responseText + " QXL zipcode & event " + eventbritecarosel;		
 					} 
 					else if(searchservice == "meetup"){              
-						 //event_meetup(eventcity,eventzipcode);
+						 event_meetup(eventcity, eventzipcode, sender);
 					}
 				}
 				else if (action == "the_greatness"){
@@ -393,6 +393,81 @@ function event_eventbrite(location, senduser){
 			 });	 
 }
 
+/**
+This method is to find events through the meet up API and returns them for user interaction
+**/
+function event_meetup(mcity, mzipcode, senduser){
+
+// check if the variable we have gotten from API.AI is any good and has the zip code we need within it.  If it does, we can assign it to our location variable and make API call
+// set variable "location" to be the zip code passed to us from API.ai for use with meetup api call - https://www.meetup.com/meetup_api/docs/2/open_events/ for API guidance
+
+				var elementsarm = [];
+				var messageDatam = [];
+
+		request({
+		  url: 'https://api.meetup.com/2/open_events?key=7b196b2b6510335c99242643b2a53&sign=true&topic=cannabis,weed,marijuana&zip='+location+'&radius=30',
+			,method: 'GET'
+		},(error, response, body) => {
+			 if (!error && (response.code == "bad_request" || response.code == "invalid_param")) {
+			 //be sure to validate if this error arrangement is going to work for meetup
+				var emeet = JSON.parse(body);
+				console.log(ebrite.error_description + " - is the Eventbrite error");
+			  }		
+			  else{
+				var meetuapi = body;
+				var me1 = JSON.parse(meetuapi); 
+				var numofeventsm = me1.meta.total_count;
+					
+				if (numofeventsm <=0)    {
+					//find some way to inform my NLP that the events are zero & write multiple responses for it
+					//context.sendResponse("Meet Up returned zero events in this area, unfortunately");
+					//insert eventbrite function here to search eventbrite to find events since meetup doesn't have any
+				}
+				else if(numofeventsm >=10){
+						numofeventsm = 10;
+					}		
+					for(var im=0;im<numofeventsm;im++){
+					
+						var mimage = me1.results[im].group.photos.photo_link;
+						var mtitle = me1.results[im].name;
+						var mdate = me1.results[im].start.local;
+						var mlink = me1.results[im].event_url;
+
+							if(!me1.results[im].group.photos.photo_link){
+								me1.results[im].group.photos.photo_link = "https://en.wikipedia.org/wiki/Smiley#/media/File:Smiley.svg";
+								//CHANGE THIS TO myTHCGuide logo once we choose one!
+							}					
+						elementsarm.push({
+								title: mtitle,
+								subtitle: mdate,
+								item_url: mlink,               
+								image_url: mimage,
+								buttons: [{
+								  type: "web_url",
+								  url: mlink,
+								  title: "More Info"
+								}]
+								});
+					}
+					}
+					messageDatam = {
+						recipient: {
+						  id: senduser
+						},
+						message: {
+						  attachment: {
+							type: "template",
+							payload: {
+							  template_type: "generic",
+							  elements: elementsar
+							}
+						  }
+						}
+					  };	console.log("This is the message array pre-call for meetup " + JSON.stringify(messageDatam));
+					  callSendAPIstructured(messageDatam);
+			 });	 
+}
+
 function event_eventbriteq(locate, senduser){
 
 	var ebody = event_eventbrite_apicall(locate);
@@ -522,36 +597,6 @@ other user purposes to better understand our users.
 function conduct_survey(context,event){
 }
 
-/**
-This method is to find events through the meet up API and returns them for user interaction
-**/
-function event_meetup(context,event){
-/*
-// check if the variable we have gotten from API.AI is any good and has the zip code we need within it.  If it does, we can assign it to our location variable and make API call
-// set variable "location" to be the zip code passed to us from API.ai for use with meetup api call - https://www.meetup.com/meetup_api/docs/2/open_events/ for API guidance
-
-context.simplehttp.makeGet("https://api.meetup.com/2/open_events?key=7b196b2b6510335c99242643b2a53&sign=true&topic=cannabis,weed,marijuana&zip="+location+"&radius=20",null,function (context, event){
-	        var meetu = JSON.parse(event.getresp);
-	        var mname;
-	        var numofeventsm = meetu.meta.total_count;
-			
-			if(numofeventsm <=0){
-			context.sendResponse("Meetup returned zero events in this area, unfortunately");
-			}
-			else if(numofeventsm>=10){
-					numofeventsm = 10;
-					}
-					for(var im=0;im<meetu.results.length;im++){
-						var meetup = meetu.results[im];
-						mname = meetup.name;
-						var mdescpt = meetup.description;
-						}
-				}
-	        
-	    });
-
-*/
-}
 
 /**
 This method is to get the birthday of the user, to ensure that they are old enough to use the bot and for better
