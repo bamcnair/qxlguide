@@ -344,6 +344,12 @@ function event_eventbrite(location, senduser){
 					//find some way to inform my NLP that the events are zero & write multiple responses for it
 					//context.sendResponse("Eventbrite returned zero events in this area, unfortunately");
 					//insert meetup function here to search meetup to find events since eventbrite doesn't have any
+					messageData = "There are no Eventbrite Events.  I'll search Meetup!";
+					sendFBMessage(senduser, messageData);
+					event_eventbrite(location, senduser);
+					return;
+					}
+				
 				}
 				else if(numofevents >=10){
 						numofevents = 10;
@@ -358,7 +364,7 @@ function event_eventbrite(location, senduser){
 						var elink = bb1.events[ie].url;
 
 							if(!bb1.events[ie].logo.url){
-								eventbrite.logo.url = "https://en.wikipedia.org/wiki/Smiley#/media/File:Smiley.svg";
+								bb1.events[ie].logo.url = "https://en.wikipedia.org/wiki/Smiley#/media/File:Smiley.svg";
 								//CHANGE THIS TO myTHCGuide logo once we choose one!
 							}
 						elementsar.push({
@@ -421,8 +427,20 @@ function event_meetup(mcity, mzipcode, senduser){
 					
 				if (numofeventsm <=0)    {
 					//find some way to inform my NLP that the events are zero & write multiple responses for it
+					// make call to sendFBmessage that there are no events from this service, we will search the other one, then call eventbrite service
 					//context.sendResponse("Meet Up returned zero events in this area, unfortunately");
 					//insert eventbrite function here to search eventbrite to find events since meetup doesn't have any
+					messageDatam = "There are no Meetup Events.  I'll search eventbrite!";
+					sendFBMessage(senduser, messageDatam);
+					if(mcity){
+					event_eventbrite(mcity, senduser);
+					return;
+					}
+					else{
+					event_eventbrite(mzipcode, senduser);
+					return;
+					}
+					
 				}
 				else if(numofeventsm >=10){
 						numofeventsm = 10;
@@ -471,72 +489,6 @@ function event_meetup(mcity, mzipcode, senduser){
 			 });	 
 }
 
-function event_eventbriteq(locate, senduser){
-
-	var ebody = event_eventbrite_apicall(locate);
-						console.log("this is inside the regular function " + ebody);
-				//var eventbapi = JSON.parse(ebody);
-				//var eventbrite = eventbapi.events;
-				//var eventbrite = ebody.pagination;
-				//var numofevents = eventbrite.length;
-				//This code checks if events are available from eventbrite.  If num of events is zero, there's nothing to show
-				
-					if (eventbrite){
-					return ("topvalue2");
-					}
- 	/*           
-				if (numofevents <=0)    {
-					//find some way to inform my NLP that the events are zero & write multiple responses for it
-					//context.sendResponse("Eventbrite returned zero events in this area, unfortunately");
-					//insert meetup function here to search meetup to find events since eventbrite doesn't have any
-				}
-				else if(numofevents >=10){
-						numofevents = 10;
-					}
-				var elementsar = [];
-				var messageData = [];
-					for(var ie=0;ie<numofevents;ie++){
-					
-						var eimage = eventbrite[ie].logo.url;
-						var etitle = eventbrite[ie].name.text;
-						var edate = eventbrite[ie].start.local;
-						var elink = eventbrite[ie].url;
-
-							if(!eventbrite.logo.url){
-								eventbrite.logo.url = "https://en.wikipedia.org/wiki/Smiley#/media/File:Smiley.svg";
-								//CHANGE THIS TO myTHCGuide logo once we choose one!
-							}
-					/*	elementsar.push({
-								title: etitle,
-								subtitle: edate,
-								item_url: elink,               
-								image_url: eimage,
-								buttons: [{
-								  type: "web_url",
-								  url: elink,
-								  title: "More Info"
-								}]
-								});
-					}
-					messageData = {
-						recipient: {
-						  id: senduser
-						},
-						message: {
-						  attachment: {
-							type: "template",
-							payload: {
-							  template_type: "generic",
-							  elements: elementsar
-							}
-						  }
-						}
-					  }; */
-
-		
-		//return (messageData);
-		return (ebody);
-	}	
 
 /**
 This method is to find cannabis strain information based on a user provided strain name.  The user has to know the name of a specific strain 
