@@ -430,7 +430,7 @@ function event_meetup(mcity, mzipcode, senduser){
 					for(var im=0;im<numofeventsm;im++){
 					/*
 						if(!me1.results[im].group.photos.photo_link){
-						me1.results[im].group.photos.photo_link = "weed,cannabis,marijuana";
+						me1.results[im].group.photos.photo_link = "https://en.wikipedia.org/wiki/Smiley#/media/File:Smiley.svg";
 						//CHANGE THIS TO myTHCGuide logo once we choose one!
 					}
 					
@@ -444,7 +444,7 @@ function event_meetup(mcity, mzipcode, senduser){
 								title: mtitle,
 								//subtitle: mdate,
 								item_url: mlink,               
-								image_url: 'weed,cannabis,marijuana', //mimage,
+								image_url: 'https://en.wikipedia.org/wiki/Smiley#/media/File:Smiley.svg', //mimage,
 								buttons: [{
 								  type: "web_url",
 								  url: mlink,
