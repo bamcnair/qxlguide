@@ -549,7 +549,7 @@ function specific_strain(cr_strain,cr_senduser){
 				var messageDatacr = [];
 
 		request({
-		  url: 'https://www.cannabisreports.com/api/v1.0/strains/search/aruba'       //+cr_strain,   //change back from specific strain
+		  url: 'https://www.cannabisreports.com/api/v1.0/strains/search/aruba',       //+cr_strain,   //change back from specific strain
             headers: {
 				'X-API-Key' : 'c60873cc9da223d1d3a6c59ff19a72ba381e34d2'
 			},
