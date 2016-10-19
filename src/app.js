@@ -544,7 +544,7 @@ function specific_strain(cr_strain,cr_senduser){
 // https://developers.cannabisreports.com/docs/strains-search-query
 
 //grab the strain name from the user input, conduct a search, and present the options to the user to find out more about
-
+console.log("this is the strain output again " + cr_strain);
 				var elementscr = [];
 				var messageDatacr = [];
 
@@ -561,13 +561,11 @@ function specific_strain(cr_strain,cr_senduser){
 				console.log(cr_err.message + " - is the Cannabis Reports error");
 			  }
 			  else{
-			  console.log("this is the output " + body); 
-			  console.log("this is with parse used on body " + JSON.parse(body));
-			  console.log("this is with stringify used on body " + JSON.stringify(body));
+
 				var cr_respond = JSON.parse(body); 
 				var cr1 = cr_respond.data;
 				var numofstrains = cr_respond.meta.pagination.total;
-				console.log("this is num of strains, after parse on body " + numofstrains);
+
 				if (numofstrains <=0)    {
 					//find some way to inform my NLP that the events are zero & write multiple responses for it
 					//context.sendResponse("Eventbrite returned zero events in this area, unfortunately");
