@@ -549,7 +549,7 @@ function specific_strain(cr_strain,cr_senduser){
 				var messageDatacr = [];
 
 		request({
-		  url: 'https://www.cannabisreports.com/api/v1.0/strains/search/'+cr_strain,
+		  url: 'https://www.cannabisreports.com/api/v1.0/strains/search/aruba'       //+cr_strain,   //change back from specific strain
             headers: {
 				'X-API-Key' : 'c60873cc9da223d1d3a6c59ff19a72ba381e34d2'
 			},
@@ -562,6 +562,8 @@ function specific_strain(cr_strain,cr_senduser){
 			  }
 			  else{
 			  console.log("this is the output " + body); 
+			  console.log("this is with parse used on body " + JSON.parse(body));
+			  console.log("this is with stringify used on body " + JSON.stringify(body));
 				var cr_respond = JSON.parse(body); 
 				var cr1 = cr_respond.data;
 				var numofstrains = cr_respond.meta.pagination.total;
