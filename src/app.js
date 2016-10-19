@@ -579,7 +579,7 @@ function specific_strain(cr_strain,cr_senduser){
 
 						elementscr.push({
 								title: sname,
-								//subtitle: edate,
+								subtitle: "My THC Guide - Your Friendly Guide for Cannabis Knowledge",
 								item_url: slink,               
 								image_url: simage,
 								buttons: [{
