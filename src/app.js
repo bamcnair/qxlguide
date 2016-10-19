@@ -634,7 +634,7 @@ function condition_per_strain(context,event){
 This provides the medical conditions that a strain can help alleviate.  So the user provides a strain name, and we get the conditions
 that the strain could assist with.  Its the opposite of the condition_per_strain 
 **/
-function strain_per_condition(context,event){
+function medical_strains(context,event){
 }
 
 /**
