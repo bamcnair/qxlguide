@@ -544,12 +544,12 @@ function specific_strain(cr_strain,cr_senduser){
 // https://developers.cannabisreports.com/docs/strains-search-query
 
 //grab the strain name from the user input, conduct a search, and present the options to the user to find out more about
-console.log("this is the strain output again " + cr_strain);
+console.log("this is the strain output again inside method " + cr_strain);
 				var elementscr = [];
 				var messageDatacr = [];
 
 		request({
-		  url: 'https://www.cannabisreports.com/api/v1.0/strains/search/aruba',       //+cr_strain,   //change back from specific strain
+		  url: 'https://www.cannabisreports.com/api/v1.0/strains/search/'+cr_strain,   //change back from specific strain
             headers: {
 				'X-API-Key' : 'c60873cc9da223d1d3a6c59ff19a72ba381e34d2'
 			},
@@ -561,7 +561,7 @@ console.log("this is the strain output again " + cr_strain);
 				console.log(cr_err.message + " - is the Cannabis Reports error");
 			  }
 			  else{
-
+console.log("this is the strain output again inside method inside conditional  " + cr_strain);
 				var cr_respond = JSON.parse(body); 
 				var cr1 = cr_respond.data;
 				var numofstrains = cr_respond.meta.pagination.total;
