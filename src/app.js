@@ -544,7 +544,7 @@ function specific_strain(cr_strain,cr_senduser){
 // https://developers.cannabisreports.com/docs/strains-search-query
 
 //grab the strain name from the user input, conduct a search, and present the options to the user to find out more about
-console.log("this is the strain output again inside method " + cr_strain);
+
 				var elementscr = [];
 				var messageDatacr = [];
 
