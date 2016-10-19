@@ -567,7 +567,7 @@ function specific_strain(cr_strain,cr_senduser){
 				var cr_respond = JSON.parse(body); 
 				var cr1 = cr_respond.data;
 				var numofstrains = cr_respond.meta.pagination.total;
-					
+				console.log("this is num of strains, after parse on body " + numofstrains);
 				if (numofstrains <=0)    {
 					//find some way to inform my NLP that the events are zero & write multiple responses for it
 					//context.sendResponse("Eventbrite returned zero events in this area, unfortunately");
