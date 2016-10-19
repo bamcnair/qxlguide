@@ -60,12 +60,10 @@ function processEvent(event) {
 					if(eventcity && searchservice == "eventbrite"){
 						loc = eventcity;
 						event_eventbrite(loc, sender);
-						responseText = responseText + " QXL city & event! ";
 					}
 					else if(eventzipcode && searchservice == "eventbrite"){
 						loc = eventzipcode;
 						event_eventbrite(loc, sender);
-						responseText = responseText + " QXL zipcode & event " + eventbritecarosel;		
 					} 
 					else if(searchservice == "meetup"){              
 						 event_meetup(eventcity, eventzipcode, sender);
@@ -76,15 +74,8 @@ function processEvent(event) {
 				}
 				else if (action == "specific_strain"){
 				var strain_name = response.result.parameters.specific_strain;
-				console.log("this is the strain name " + strain_name);
 				specific_strain(strain_name,sender);
 				}				
-				else if (action == "the_greatness"){
-				responseText = responseText + " this is the greatness";
-				}
-				else if (action == "black_people"){
-				responseText = responseText + " logic for black people";
-				}
 
                 if (isDefined(responseData) && isDefined(responseData.facebook)) {
                     if (!Array.isArray(responseData.facebook)) {
@@ -436,7 +427,7 @@ function event_eventbrite(location, senduser){
 							}
 						  }
 						}
-					  };	console.log("This is the message array but Right before the Return " + JSON.stringify(messageData));
+					  };
 					  callSendAPIstructured(messageData);
 					  
 			 });	 
@@ -465,8 +456,6 @@ function event_meetup(mcity, mzipcode, senduser){
 				var meetuapi = body;
 				var me1 = JSON.parse(meetuapi); 
 				var numofeventsm = me1.meta.total_count;
-				console.log("this is number of events " + numofeventsm);
-				console.log(meetuapi);
 					
 				if (numofeventsm <=0)    {
 					//find some way to inform my NLP that the events are zero & write multiple responses for it
@@ -529,7 +518,7 @@ function event_meetup(mcity, mzipcode, senduser){
 							}
 						  }
 						}
-					  };	console.log("This is the message array pre-call for meetup " + JSON.stringify(messageDatam));
+					  };
 					  callSendAPIstructured(messageDatam);
 			 });	 
 }
@@ -555,13 +544,11 @@ function specific_strain(cr_strain,cr_senduser){
 			},
 			method: 'GET'
 		},(error, response, body) => {
-		console.log("this is the body variable " + body);  
 			 if (!error && response.status_code == 200 || response.status_code == 400) {
 				var cr_err = JSON.parse(body);
 				console.log(cr_err.message + " - is the Cannabis Reports error");
 			  }
 			  else{
-console.log("this is the strain output again inside method inside conditional  " + cr_strain);
 				var cr_respond = JSON.parse(body); 
 				var cr1 = cr_respond.data;
 				var numofstrains = cr_respond.meta.pagination.total;
@@ -615,7 +602,7 @@ console.log("this is the strain output again inside method inside conditional  "
 							}
 						  }
 						}
-					  };	console.log("This is the message array but Right before the Return " + JSON.stringify(messageDatacr));
+					  };
 					  callSendAPIstructured(messageDatacr);
 					 }
 					}					 
