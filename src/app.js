@@ -43,7 +43,7 @@ function processEvent(event) {
                 let responseText = response.result.fulfillment.speech; 
 				//THIS is how it parses JSON returns from API.ai
                 //let responseData = response.result.fulfillment.data;
-                let responseData = response.result.fulfillment.payload;				
+                let responseData = response.result.fulfillment.messages.payload;				
                 let action = response.result.action;
 				let richResponse = response.result.fulfillment.messages;
 				//This insertion for richResponse is to get cards, quick replies, images, and others from API.ai for use in FB, Kik, Telegram, Slack 11-04-16
