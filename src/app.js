@@ -43,13 +43,14 @@ function processEvent(event) {
 					
                 let responseText = response.result.fulfillment.speech; 
 				//THIS is how it parses JSON returns from API.ai
-                //let responseData = response.result.fulfillment.data;			
+                //let responseData = response.result.fulfillment.data;	
+				let responseData = response.result.fulfillment.messages[].payload;
                 let action = response.result.action;
 				
-				if (isDefined(response.result.fulfillment.messages)){
-				     let responseData = response.result.fulfillment.messages[0].payload;	
+				//if (isDefined(response.result.fulfillment.messages)){
+				//     let responseData = response.result.fulfillment.messages[0].payload;	
 				//This insertion for responseData is to get cards, quick replies, images, and others from API.ai for use in FB, Kik, Telegram, Slack via Custom Payloads 11-04-16
-				}
+				//}
 				
 				/*
 				First Alteration of code.  Adding if action = find_event then alter the response text.
