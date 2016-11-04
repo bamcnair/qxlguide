@@ -53,8 +53,9 @@ function processEvent(event) {
 				
 				                if (isDefined(richResponse)) {
 								console.log("richResponse is detected");
-								console.log(JSON.stringify(richResponse));
-								console.log(JSON.stringify(richResponse.payload));
+								console.log(JSON.stringify(richResponse[0]));
+								console.log(JSON.stringify(richResponse[1]));								
+								console.log(JSON.stringify(richResponse[2]));								
 								}
 								if (isDefined(responseData)){
 								console.log("the response Data works and is detected");
