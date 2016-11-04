@@ -51,10 +51,10 @@ function processEvent(event) {
 				                if (isDefined(responseData) && isDefined(responseData.facebook)) {
 								console.log("both variables work and is detected");
 								}
-								if (isDefined(responseData){
+								if (isDefined(responseData)){
 								console.log("the response Data works and is detected");
 								}
-								if (isDefined(responseData.facebook) {
+								if (isDefined(responseData.facebook)) {
 								console.log("the facebook portion works and is detected");
 								}
 				
