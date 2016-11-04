@@ -49,6 +49,12 @@ function processEvent(event) {
 				//This insertion for richResponse is to get cards, quick replies, images, and others from API.ai for use in FB, Kik, Telegram, Slack 11-04-16
 				
 				                if (isDefined(responseData) && isDefined(responseData.facebook)) {
+								console.log("both variables work and is detected");
+								}
+								if (isDefined(responseData){
+								console.log("the response Data works and is detected");
+								}
+								if (isDefined(responseData.facebook) {
 								console.log("the facebook portion works and is detected");
 								}
 				
