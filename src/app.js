@@ -49,19 +49,7 @@ function processEvent(event) {
                 let responseData = response.result.fulfillment.messages[0].payload;				
                 let action = response.result.action;
 				let richResponse = response.result.fulfillment.messages[0].payload;
-				//This insertion for richResponse is to get cards, quick replies, images, and others from API.ai for use in FB, Kik, Telegram, Slack 11-04-16
-				
-				                if (isDefined(richResponse)) {
-								console.log("richResponse is detected");
-								console.log(JSON.stringify(richResponse.facebook));								
-								//console.log(JSON.stringify(richResponse.payload.facebook));  Undefined
-								//sendFBMessage(sender, richResponse.facebook);								
-								}
-								if (isDefined(responseData)){
-								console.log("the response Data works and is detected");
-								}
-
-				
+				//This insertion for responseData is to get cards, quick replies, images, and others from API.ai for use in FB, Kik, Telegram, Slack via Custom Payloads 11-04-16
 				
 				/*
 				First Alteration of code.  Adding if action = find_event then alter the response text.
@@ -309,7 +297,7 @@ function isDefined(obj) {
         return false;
     }
 
-    return obj != null;
+    return obj !== null;
 }
 
 const app = express();
@@ -375,6 +363,12 @@ input, to log those requests, and to find out how the users behave.
 /**
 This method is to find events through the eventbrite API and returns them for user interaction
 //https://www.eventbrite.com/developer/v3/endpoints/events/
+**/
+
+/**
+Function Notes
+
+Find a way to add a "MORE" button to see more events if a person wants to see more than just 10, or see the next 10
 **/
 function event_eventbrite(location, senduser){
 
