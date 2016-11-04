@@ -47,7 +47,7 @@ function processEvent(event) {
 				let responseData = response.result.fulfillment.messages;
                 let action = response.result.action;
 				
-				if ((response.result.fulfillment.messages[0].payload) === undefined){
+				if ((response.result.fulfillment.messages[0].payload) === 'undefined'){
 				}
 				else {
 				    let responseData = response.result.fulfillment.messages[0].payload;	
