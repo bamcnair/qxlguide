@@ -46,17 +46,16 @@ function processEvent(event) {
                 let responseText = response.result.fulfillment.speech; 
 				//THIS is how it parses JSON returns from API.ai
                 //let responseData = response.result.fulfillment.data;
-                let responseData = response.result.fulfillment.messages.payload;				
+                let responseData = response.result.fulfillment.messages[0].payload;				
                 let action = response.result.action;
-				let richResponse = response.result.fulfillment.messages;
+				let richResponse = response.result.fulfillment.messages[0].payload;
 				//This insertion for richResponse is to get cards, quick replies, images, and others from API.ai for use in FB, Kik, Telegram, Slack 11-04-16
 				
 				                if (isDefined(richResponse)) {
 								console.log("richResponse is detected");
-								console.log(JSON.stringify(richResponse[0]));
-								console.log(JSON.stringify(richResponse[0].payload.facebook));								
+								console.log(JSON.stringify(richResponse.facebook));								
 								//console.log(JSON.stringify(richResponse.payload.facebook));  Undefined
-								sendFBMessage(sender, richResponse[0].payload.facebook);								
+								//sendFBMessage(sender, richResponse.facebook);								
 								}
 								if (isDefined(responseData)){
 								console.log("the response Data works and is detected");
