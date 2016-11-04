@@ -44,7 +44,7 @@ function processEvent(event) {
                 let responseText = response.result.fulfillment.speech; 
 				//THIS is how it parses JSON returns from API.ai
                 //let responseData = response.result.fulfillment.data;	
-				let responseData = response.result.fulfillment.messages[].payload;
+				let responseData = response.result.fulfillment.messages.payload;
                 let action = response.result.action;
 				
 				//if (isDefined(response.result.fulfillment.messages)){
