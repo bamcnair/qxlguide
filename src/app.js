@@ -153,7 +153,7 @@ function chunkString(s, len) {
                     break;
                 }
                 currReverse--;
-            } while (currReverse > prev)
+            } while (currReverse > prev);
         }
     }
     output.push(s.substr(prev));
@@ -206,66 +206,6 @@ function sendFBSenderAction(sender, action, callback) {
     }, 1000);
 }
 
-function callSendAPIstructured(messageData) {
-  request({
-    uri: 'https://graph.facebook.com/v2.6/me/messages',
-    qs: {access_token: FB_PAGE_ACCESS_TOKEN},
-    method: 'POST',
-    json: messageData
-
-  }, function (error, response, body) {
-    if (!error && response.statusCode == 200) {
-      var recipientId = body.recipient_id;
-      var messageId = body.message_id;
-
-      if (messageId) {
-        console.log("Successfully sent message with id %s to recipient %s", 
-          messageId, recipientId);
-      } else {
-      console.log("Successfully called Send API for recipient %s", 
-        recipientId);
-      }
-    } else {
-      console.error("Failed calling Send API", response.statusCode, response.statusMessage, body.error);
-    }
-  });  
-}
-
-
-function strain_menu(recipientId) {
-
- var messageData = {
-    recipient: {
-      id: recipientId
-    },
-    message: {
-      attachment: {
-        type: "template",
-        payload: {
-          template_type: "generic",
-          elements: [{
-            title: "How Would You Like to Search?",
-            subtitle: "Search for cannabis strains by keyword or medical need",              
-            image_url: "https://upload.wikimedia.org/wikipedia/commons/thumb/9/90/JfTabon%2C_San_Isidro%2C_Nueva_Ecijalands0088fvf_04.JPG/640px-JfTabon%2C_San_Isidro%2C_Nueva_Ecijalands0088fvf_04.JPG",
-            buttons: [{
-              type: "postback",
-              title: "By Keyword",
-              payload: "how do i search by keyword"
-            }, {
-              type: "postback",
-              title: "By Medical Need",
-              payload: "What helps me with medical conditions"
-            }],
-          }]
-        }
-      }
-    }
-  };  
-
-  callSendAPIstructured(messageData);
-}
-
-
 function doSubscribeRequest() {
     request({
             method: 'POST',
@@ -289,7 +229,7 @@ function isDefined(obj) {
         return false;
     }
 
-    return obj != null;
+    return obj !== null;
 }
 
 const app = express();
@@ -344,6 +284,7 @@ app.listen(REST_PORT, () => {
 });
 
 doSubscribeRequest();
+
 /*
 *****************************************************
 The below code represents functions/methods that have the goal of obtaining information from user
@@ -355,19 +296,11 @@ input, to log those requests, and to find out how the users behave.
 This method is to find events through the eventbrite API and returns them for user interaction
 //https://www.eventbrite.com/developer/v3/endpoints/events/
 **/
+function event_eventbrite_apicall(location){
 
-/**
-Function Notes
-
-Find a way to add a "MORE" button to see more events if a person wants to see more than just 10, or see the next 10
-**/
-function event_eventbrite(location, senduser){
-
-				var elementsar = [];
-				var messageData = [];
+		//var eventcall = 
 		request({
-		  url: 'https://www.eventbriteapi.com/v3/events/search/?token=7JHPO6VFBV5CQKPPIN3G&q=cannabis&sort_by=distance&location.within=30mi&location.address='+location,  
-		  //took out topic=cannabis,weed,marijuana so that query doesn't have to match all three.  Cannabis is popular so i kept it in.
+		  url: 'https://www.eventbriteapi.com/v3/events/search/?token=7JHPO6VFBV5CQKPPIN3G&q=weed,cannabis,marijuana&sort_by=distance&location.within=30mi&location.address='+location,
           headers: {
 				'Authorization' : 'Bearer 7JHPO6VFBV5CQKPPIN3G'
 			},
@@ -378,38 +311,53 @@ function event_eventbrite(location, senduser){
 				console.log(ebrite.error_description + " - is the Eventbrite error");
 			  }
 			  else{
-				var eventbapi = body;
-				var bb1 = JSON.parse(eventbapi); 
-				var numofevents = bb1.events.length;
-					
+										console.log("error is " + error);
+										console.log("response is " + response);
+										console.log("body is " + body);
+							var eventcall = body;
+							 return (eventcall);
+				}				
+			 });
+
+
+}
+
+function event_eventbrite(locate, senduser){
+
+	var ebody = event_eventbrite_apicall(locate);
+						console.log("this is inside the regular function " + ebody);
+				//var eventbapi = JSON.parse(ebody);
+				//var eventbrite = eventbapi.events;
+				//var eventbrite = ebody.pagination;
+				//var numofevents = eventbrite.length;
+				//This code checks if events are available from eventbrite.  If num of events is zero, there's nothing to show
+				
+					if (eventbrite){
+					return ("topvalue2");
+					}
+ 	/*           
 				if (numofevents <=0)    {
 					//find some way to inform my NLP that the events are zero & write multiple responses for it
 					//context.sendResponse("Eventbrite returned zero events in this area, unfortunately");
 					//insert meetup function here to search meetup to find events since eventbrite doesn't have any
-					/*
-					messageData = "There are no Eventbrite Events.  I'll search Meetup!";
-					sendFBMessage(senduser, messageData);
-					event_eventbrite(location, senduser);
-					return;
-					*/
-					}
+				}
 				else if(numofevents >=10){
 						numofevents = 10;
 					}
-					
-
+				var elementsar = [];
+				var messageData = [];
 					for(var ie=0;ie<numofevents;ie++){
 					
-						var eimage = bb1.events[ie].logo.url;
-						var etitle = bb1.events[ie].name.text;
-						var edate = bb1.events[ie].start.local;
-						var elink = bb1.events[ie].url;
+						var eimage = eventbrite[ie].logo.url;
+						var etitle = eventbrite[ie].name.text;
+						var edate = eventbrite[ie].start.local;
+						var elink = eventbrite[ie].url;
 
-							if(!bb1.events[ie].logo.url){
-								bb1.events[ie].logo.url = "https://en.wikipedia.org/wiki/Smiley#/media/File:Smiley.svg";
+							if(!eventbrite.logo.url){
+								eventbrite.logo.url = "https://en.wikipedia.org/wiki/Smiley#/media/File:Smiley.svg";
 								//CHANGE THIS TO myTHCGuide logo once we choose one!
 							}
-						elementsar.push({
+					/*	elementsar.push({
 								title: etitle,
 								subtitle: edate,
 								item_url: elink,               
@@ -420,7 +368,6 @@ function event_eventbrite(location, senduser){
 								  title: "More Info"
 								}]
 								});
-					}
 					}
 					messageData = {
 						recipient: {
@@ -435,188 +382,40 @@ function event_eventbrite(location, senduser){
 							}
 						  }
 						}
-					  };
-					  callSendAPIstructured(messageData);
-					  
-			 });	 
-}
+					  }; */
 
-/**
-This method is to find events through the meet up API and returns them for user interaction
-**/
-function event_meetup(mcity, mzipcode, senduser){
-
-// check if the variable we have gotten from API.AI is any good and has the zip code we need within it.  If it does, we can assign it to our location variable and make API call
-// set variable "location" to be the zip code passed to us from API.ai for use with meetup api call - https://www.meetup.com/meetup_api/docs/2/open_events/ for API guidance
-
-				var elementsarm = [];
-				var messageDatam = [];
-
-		request({
-		  url: 'https://api.meetup.com/2/open_events?key=7b196b2b6510335c99242643b2a53&sign=true&topic=weed,cannabis,marijuana&zip='+mzipcode+'&radius=30&city='+mcity,
-			method: 'GET'
-		},(error, response, body) => {
-			 if (!error && (response.code == "bad_request" || response.code == "invalid_param")) {
-			 //be sure to validate if this error arrangement is going to work for meetup
-				var emeet = JSON.parse(body); 
-			  }		
-			  else{
-				var meetuapi = body;
-				var me1 = JSON.parse(meetuapi); 
-				var numofeventsm = me1.meta.total_count;
-					
-				if (numofeventsm <=0)    {
-					//find some way to inform my NLP that the events are zero & write multiple responses for it
-					// make call to sendFBmessage that there are no events from this service, we will search the other one, then call eventbrite service
-					//context.sendResponse("Meet Up returned zero events in this area, unfortunately");
-					//insert eventbrite function here to search eventbrite to find events since meetup doesn't have any, and make it stop if the 
-					//other service doesnt have any events either.
-					/*
-					messageDatam = "There are no Meetup Events.  I'll search eventbrite!";
-					sendFBMessage(senduser, messageDatam);
-					if(mcity){
-					event_eventbrite(mcity, senduser);
-					return;
-					}
-					else{
-					event_eventbrite(mzipcode, senduser);
-					return;
-					}
-					*/
-				}
-				else if(numofeventsm >=10){
-						numofeventsm = 10;
-					}		
-					for(var im=0;im<numofeventsm;im++){
-					/*
-						if(!me1.results[im].group.photos.photo_link){
-						me1.results[im].group.photos.photo_link = "https://upload.wikimedia.org/wikipedia/commons/thumb/9/90/JfTabon%2C_San_Isidro%2C_Nueva_Ecijalands0088fvf_04.JPG/640px-JfTabon%2C_San_Isidro%2C_Nueva_Ecijalands0088fvf_04.JPG";
-						//CHANGE THIS TO myTHCGuide logo once we choose one!
-					}
-					
-						var mimage = me1.results[im].group.photos.photo_link;  */
-						var mtitle = me1.results[im].name;
-						//var mdate = me1.results[im].start.local;
-						var mlink = me1.results[im].event_url;
-
-					
-						elementsarm.push({
-								title: mtitle,
-								//subtitle: mdate,
-								item_url: mlink,               
-								image_url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/9/90/JfTabon%2C_San_Isidro%2C_Nueva_Ecijalands0088fvf_04.JPG/640px-JfTabon%2C_San_Isidro%2C_Nueva_Ecijalands0088fvf_04.JPG', //mimage,
-								buttons: [{
-								  type: "web_url",
-								  url: mlink,
-								  title: "More Info"
-								}]
-								});
-					}
-					}
-					messageDatam = {
-						recipient: {
-						  id: senduser
-						},
-						message: {
-						  attachment: {
-							type: "template",
-							payload: {
-							  template_type: "generic",
-							  elements: elementsarm
-							}
-						  }
-						}
-					  };
-					  callSendAPIstructured(messageDatam);
-			 });	 
-}
-
+		
+		//return (messageData);
+		return (ebody);
+	}	
 
 /**
 This method is to find cannabis strain information based on a user provided strain name.  The user has to know the name of a specific strain 
 for this function to work
 **/
-function specific_strain(cr_strain,cr_senduser){
+function specific_strain(context,event){
 
 // https://developers.cannabisreports.com/docs/strains-search-query
 
 //grab the strain name from the user input, conduct a search, and present the options to the user to find out more about
 
-				var elementscr = [];
-				var messageDatacr = [];
+var specific_strain_name = "og";  //don't assign this variable in the production version, doing it here just to test.  do NOT assign this variable!!
+            context.simplehttp.makeGet("https://www.cannabisreports.com/api/v1.0/strains/search/" + specific_strain_name,null,function(context,event){
+			
+	        var strainnames = JSON.parse(event.getresp);
+			var numofstrains = strainnames.data.length;
+	        var name;
 
-		request({
-		  url: 'https://www.cannabisreports.com/api/v1.0/strains/search/'+cr_strain,   //change back from specific strain
-            headers: {
-				'X-API-Key' : 'c60873cc9da223d1d3a6c59ff19a72ba381e34d2'
-			},
-			method: 'GET'
-		},(error, response, body) => {
-			 if (!error && response.status_code == 200 || response.status_code == 400) {
-				var cr_err = JSON.parse(body);
-				console.log(cr_err.message + " - is the Cannabis Reports error");
-			  }
-			  else{
-				var cr_respond = JSON.parse(body); 
-				var cr1 = cr_respond.data;
-				var numofstrains = cr_respond.meta.pagination.total;
+	        for(var i=0;i<strainnames.data.length;i++){
+	            var obj = strainnames.data[i];
+	            var sname = obj.name;
+	            var simage = {"type":"image","originalUrl": obj.image ,"previewUrl": obj.image};
+	        }
+	        
 
-				if (numofstrains <=0)    {
-					//find some way to inform my NLP that the events are zero & write multiple responses for it
-					//context.sendResponse("Eventbrite returned zero events in this area, unfortunately");
-					//insert meetup function here to search meetup to find events since eventbrite doesn't have any
-					/*
-					messageData = "There are no Eventbrite Events.  I'll search Meetup!";
-					sendFBMessage(senduser, messageData);
-					event_eventbrite(location, senduser);
-					return;
-					*/
-					}
-				else if(numofstrains == 1){
-				
-				}
-				else if(numofstrains >=7){
-				//Sets a large number of strains to 7 as to not return an annoying amount of results and stuff.  You know?  Of course you do.
-				//Also formats results as a carousel so users can easily find more information.  
-						numofstrains = 7;
-						
-					for(var is=0;is<numofstrains;is++){
-						var simage = cr1[is].image;
-						var sname = cr1[is].name;
-						var slink = cr1[is].url;
+	    });	  
 
-						elementscr.push({
-								title: sname,
-								subtitle: "My THC Guide - Your Friendly Guide for Cannabis Knowledge",
-								item_url: slink,               
-								image_url: simage,
-								buttons: [{
-								  type: "web_url",
-								  url: slink,
-								  title: "More Info"
-								  }]
-						});
-					}
-					messageDatacr = {
-						recipient: {
-						  id: cr_senduser
-						},
-						message: {
-						  attachment: {
-							type: "template",
-							payload: {
-							  template_type: "generic",
-							  elements: elementscr
-							}
-						  }
-						}
-					  };
-					  callSendAPIstructured(messageDatacr);
-					 }
-					}					 
-			 });								
 }
-
 
 /**
 This method is to find a condition that a particular cannabis strain can help treat medically.  The user provides the condition, and we 
@@ -629,7 +428,7 @@ function condition_per_strain(context,event){
 This provides the medical conditions that a strain can help alleviate.  So the user provides a strain name, and we get the conditions
 that the strain could assist with.  Its the opposite of the condition_per_strain 
 **/
-function medical_strains(context,event){
+function strain_per_condition(context,event){
 }
 
 /**
@@ -652,6 +451,36 @@ other user purposes to better understand our users.
 function conduct_survey(context,event){
 }
 
+/**
+This method is to find events through the meet up API and returns them for user interaction
+**/
+function event_meetup(context,event){
+/*
+// check if the variable we have gotten from API.AI is any good and has the zip code we need within it.  If it does, we can assign it to our location variable and make API call
+// set variable "location" to be the zip code passed to us from API.ai for use with meetup api call - https://www.meetup.com/meetup_api/docs/2/open_events/ for API guidance
+
+context.simplehttp.makeGet("https://api.meetup.com/2/open_events?key=7b196b2b6510335c99242643b2a53&sign=true&topic=cannabis,weed,marijuana&zip="+location+"&radius=20",null,function (context, event){
+	        var meetu = JSON.parse(event.getresp);
+	        var mname;
+	        var numofeventsm = meetu.meta.total_count;
+			
+			if(numofeventsm <=0){
+			context.sendResponse("Meetup returned zero events in this area, unfortunately");
+			}
+			else if(numofeventsm>=10){
+					numofeventsm = 10;
+					}
+					for(var im=0;im<meetu.results.length;im++){
+						var meetup = meetu.results[im];
+						mname = meetup.name;
+						var mdescpt = meetup.description;
+						}
+				}
+	        
+	    });
+
+*/
+}
 
 /**
 This method is to get the birthday of the user, to ensure that they are old enough to use the bot and for better
