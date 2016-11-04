@@ -49,8 +49,7 @@ function processEvent(event) {
 				First Alteration of code.  Adding if action = find_event then alter the response text.
 				*/
 
-				if(action == "find_events"){	
-					//inputs from API.ai for knowing which calls to make afterwards
+				if(action == "find_events"){				
 					var eventcity = response.result.contexts[0].parameters["geo-city"];
 					var eventzipcode = response.result.contexts[0].parameters["zip-code"];
 					var searchservice = response.result.contexts[0].parameters.event_service;
@@ -59,23 +58,26 @@ function processEvent(event) {
 
 					if(eventcity && searchservice == "eventbrite"){
 						loc = eventcity;
-						event_eventbrite(loc, sender);
+						//eventbritecarosel = event_eventbrite(loc, sender);
+						//sendFBMessage(sender,eventbritecarosel);
+						responseText = responseText + " QXL city & event! ";
 					}
 					else if(eventzipcode && searchservice == "eventbrite"){
 						loc = eventzipcode;
-						event_eventbrite(loc, sender);
+						eventbritecarosel = event_eventbrite(loc, sender);
+						sendFBMessage(sender,eventbritecarosel);
+						responseText = responseText + " QXL zipcode & event " + eventbritecarosel;		
 					} 
 					else if(searchservice == "meetup"){              
-						 event_meetup(eventcity, eventzipcode, sender);
+						 //event_meetup(eventcity,eventzipcode);
 					}
 				}
-				else if (action == "strain_menu"){
-				strain_menu(sender);
+				else if (action == "the_greatness"){
+				responseText = responseText + " this is the greatness";
 				}
-				else if (action == "specific_strain"){
-				var strain_name = response.result.parameters.specific_strain;
-				specific_strain(strain_name,sender);
-				}				
+				else if (action == "black_people"){
+				responseText = responseText + " logic for black people";
+				}
 
                 if (isDefined(responseData) && isDefined(responseData.facebook)) {
                     if (!Array.isArray(responseData.facebook)) {
@@ -86,18 +88,18 @@ function processEvent(event) {
                             sendFBMessage(sender, {text: err.message});
                         }
                     } else {
-                        async.eachSeries(responseData.facebook, (facebookMessage, callback) => {
+                        responseData.facebook.forEach((facebookMessage) => {
                             try {
                                 if (facebookMessage.sender_action) {
                                     console.log('Response as sender action');
-                                    sendFBSenderAction(sender, facebookMessage.sender_action, callback);
+                                    sendFBSenderAction(sender, facebookMessage.sender_action);
                                 }
                                 else {
                                     console.log('Response as formatted message');
-                                    sendFBMessage(sender, facebookMessage, callback);
+                                    sendFBMessage(sender, facebookMessage);
                                 }
                             } catch (err) {
-                                sendFBMessage(sender, {text: err.message}, callback);
+                                sendFBMessage(sender, {text: err.message});
                             }
                         });
                     }
