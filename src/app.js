@@ -47,7 +47,7 @@ function processEvent(event) {
 				let responseData = response.result.fulfillment.messages;
                 let action = response.result.action;
 				
-				if (response.result.fulfillment.messages[0] != null){
+				if (response.result.fulfillment.messages != null){
 				console.log("this is not an empty payload");
 				}
 				else {
