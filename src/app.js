@@ -584,8 +584,8 @@ function specific_strain(cr_strain,cr_senduser){
 					event_eventbrite(location, senduser);
 					return;
 					*/
-                    sendFBMessage(sender, {text: 'Unfortunately we did not find any strains'});					
-					return;
+                   // sendFBMessage(sender, {text: 'Unfortunately we did not find any strains'});					
+					//return;
 					}
 				else if(numofstrains == 1){
 				
