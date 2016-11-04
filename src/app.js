@@ -46,7 +46,7 @@ function processEvent(event) {
                 //let responseData = response.result.fulfillment.data;			
                 let action = response.result.action;
 				
-				if (response.result.fulfillment.messages[0].payload){
+				if (isDefined(response.result.fulfillment.messages[0].payload)){
 				     let responseData = response.result.fulfillment.messages[0].payload;	
 				//This insertion for responseData is to get cards, quick replies, images, and others from API.ai for use in FB, Kik, Telegram, Slack via Custom Payloads 11-04-16
 				}
