@@ -381,7 +381,8 @@ function event_eventbrite(location, senduser){
 				var elementsar = [];
 				var messageData = [];
 		request({
-		  url: 'https://www.eventbriteapi.com/v3/events/search/?token=7JHPO6VFBV5CQKPPIN3G&q=weed,cannabis,marijuana&sort_by=distance&location.within=30mi&location.address='+location,
+		  url: 'https://www.eventbriteapi.com/v3/events/search/?token=7JHPO6VFBV5CQKPPIN3G&q=cannabis&sort_by=distance&location.within=30mi&location.address='+location,  
+		  //took out topic=cannabis,weed,marijuana so that query doesn't have to match all three.  Cannabis is popular so i kept it in.
           headers: {
 				'Authorization' : 'Bearer 7JHPO6VFBV5CQKPPIN3G'
 			},
@@ -467,7 +468,7 @@ function event_meetup(mcity, mzipcode, senduser){
 				var messageDatam = [];
 
 		request({
-		  url: 'https://api.meetup.com/2/open_events?key=7b196b2b6510335c99242643b2a53&sign=true&topic=weed,cannabis,marijuana&zip='+mzipcode+'&radius=30&city='+mcity,
+		  url: 'https://api.meetup.com/2/open_events?key=7b196b2b6510335c99242643b2a53&sign=true&topic=cannabis&zip='+mzipcode+'&radius=30&city='+mcity,  //took out topic=cannabis,weed,marijuana so that query doesn't have to match all three.  Cannabis is popular so i kept it in.
 			method: 'GET'
 		},(error, response, body) => {
 			 if (!error && (response.code == "bad_request" || response.code == "invalid_param")) {
