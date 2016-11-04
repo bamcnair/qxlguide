@@ -342,7 +342,6 @@ app.listen(REST_PORT, () => {
 });
 
 doSubscribeRequest();
-
 /*
 *****************************************************
 The below code represents functions/methods that have the goal of obtaining information from user
@@ -354,12 +353,19 @@ input, to log those requests, and to find out how the users behave.
 This method is to find events through the eventbrite API and returns them for user interaction
 //https://www.eventbrite.com/developer/v3/endpoints/events/
 **/
+
+/**
+Function Notes
+
+Find a way to add a "MORE" button to see more events if a person wants to see more than just 10, or see the next 10
+**/
 function event_eventbrite(location, senduser){
 
 				var elementsar = [];
 				var messageData = [];
 		request({
-		  url: 'https://www.eventbriteapi.com/v3/events/search/?token=7JHPO6VFBV5CQKPPIN3G&q=weed,cannabis,marijuana&sort_by=distance&location.within=30mi&location.address='+location,
+		  url: 'https://www.eventbriteapi.com/v3/events/search/?token=7JHPO6VFBV5CQKPPIN3G&q=cannabis&sort_by=distance&location.within=30mi&location.address='+location,  
+		  //took out topic=cannabis,weed,marijuana so that query doesn't have to match all three.  Cannabis is popular so i kept it in.
           headers: {
 				'Authorization' : 'Bearer 7JHPO6VFBV5CQKPPIN3G'
 			},
