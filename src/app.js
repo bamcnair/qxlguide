@@ -49,6 +49,7 @@ function processEvent(event) {
 				
 				if (response.result.fulfillment.messages != null){
 				console.log("this is not an empty payload.  There is a value here");
+				responseData = response.result.fulfillment.messages[0].payload;
 				}
 				else {
 				console.log("this is definitely going to be an empty payload.  No value here");				
