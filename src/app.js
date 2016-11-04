@@ -55,15 +55,13 @@ function processEvent(event) {
 								console.log("richResponse is detected");
 								console.log(JSON.stringify(richResponse[0]));
 								console.log(JSON.stringify(richResponse[0].payload.facebook));								
-								console.log(JSON.stringify(richResponse.payload.facebook));
+								//console.log(JSON.stringify(richResponse.payload.facebook));  Undefined
 								sendFBMessage(sender, richResponse[0].payload.facebook);								
 								}
 								if (isDefined(responseData)){
 								console.log("the response Data works and is detected");
 								}
-								if (isDefined(responseData.facebook)) {
-								console.log("the facebook portion works and is detected");
-								}
+
 				
 				
 				/*
