@@ -47,12 +47,12 @@ function processEvent(event) {
 				let responseData = response.result.fulfillment.messages;
                 let action = response.result.action;
 				
-				if (response.result.fulfillment.messages != null){
-				console.log("this is not an empty payload");
+				if (response.result.fulfillment.messages[0].payload != null){
+				console.log("this is not an empty payload.  There is a value here");
 				}
 				else {
-				console.log("this is definitely going to be an empty payload");				
-				    let responseData = response.result.fulfillment.messages[0].payload;	
+				console.log("this is definitely going to be an empty payload.  No value here");				
+				 //   let responseData = response.result.fulfillment.messages[0].payload;	
 				//This insertion for responseData is to get cards, quick replies, images, and others from API.ai for use in FB, Kik, Telegram, Slack via Custom Payloads 11-04-16
 				}
 				
