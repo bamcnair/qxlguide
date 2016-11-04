@@ -571,9 +571,8 @@ function specific_strain(cr_strain,cr_senduser){
 				var numofstrains = cr_respond.meta.pagination.total;
 
 				if (numofstrains <=0)    {
-					//find some way to inform my NLP that the events are zero & write multiple responses for it
-					//context.sendResponse("Eventbrite returned zero events in this area, unfortunately");
-					//insert meetup function here to search meetup to find events since eventbrite doesn't have any
+					//find some way to inform my NLP that the strains are zero & write multiple responses for it
+					//context.sendResponse("Eventbrite returned zero strains in this area, unfortunately");
 					/*
 					messageData = "There are no Eventbrite Events.  I'll search Meetup!";
 					sendFBMessage(senduser, messageData);
@@ -584,10 +583,10 @@ function specific_strain(cr_strain,cr_senduser){
 				else if(numofstrains == 1){
 				
 				}
-				else if(numofstrains >=7){
+				else if(numofstrains >=12){
 				//Sets a large number of strains to 7 as to not return an annoying amount of results and stuff.  You know?  Of course you do.
 				//Also formats results as a carousel so users can easily find more information.  
-						numofstrains = 7;
+						numofstrains = 12;
 						
 					for(var is=0;is<numofstrains;is++){
 						var simage = cr1[is].image;
