@@ -57,6 +57,10 @@ function processEvent(event) {
 				//This insertion for responseData is to get cards, quick replies, images, and others from API.ai for use in FB, Kik, Telegram, Slack via Custom Payloads 11-04-16
 				}
 				
+				if (action = "event_search"){
+				let responseData = response.result.fulfillment.messages[0].payload;
+				}
+				
 				/*
 				First Alteration of code.  Adding if action = find_event then alter the response text.
 				*/
