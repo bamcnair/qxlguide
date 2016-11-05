@@ -47,7 +47,7 @@ function processEvent(event) {
 				let responseData = response.result.fulfillment.messages;
                 let action = response.result.action;
 				
-				if (isDefined(response.result.fulfillment.messages.payload)  || response.result.fulfillment.messages.payload == 'undefined'){
+				if ((response.result.fulfillment.messages.payload)){
 				console.log("Payload variable is undefined");
 				//responseData = response.result.fulfillment.messages[0].payload;
 				}
