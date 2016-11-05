@@ -47,8 +47,8 @@ function processEvent(event) {
 				let responseData = response.result.fulfillment.messages;
                 let action = response.result.action;
 				
-				if (response.result.fulfillment.messages != null){
-				console.log("this is not an empty payload.  There is a value here");
+				if (response.result.fulfillment.messages[0].payload == null  || response.result.fulfillment.messages[0].payload == "undefined" || response.result.fulfillment.messages[0].payload == undefined){
+				console.log("Payload variable is undefined");
 				//responseData = response.result.fulfillment.messages[0].payload;
 				}
 				else {
@@ -56,11 +56,7 @@ function processEvent(event) {
 				 //   let responseData = response.result.fulfillment.messages[0].payload;	
 				//This insertion for responseData is to get cards, quick replies, images, and others from API.ai for use in FB, Kik, Telegram, Slack via Custom Payloads 11-04-16
 				}
-				
-				if (action = "event_search"){
-				let responseData = response.result.fulfillment.messages[0].payload;
-				console.log("response data variable should have been set here");
-				}
+
 				
 				/*
 				First Alteration of code.  Adding if action = find_event then alter the response text.
