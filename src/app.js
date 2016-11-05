@@ -47,10 +47,11 @@ function processEvent(event) {
                 //let responseData = response.result.fulfillment.data;	
 				let payloadData = response.result.fulfillment.messages;
                 let action = response.result.action;
+				var responseData = "";
 				
 				if ((payloadData && payloadData[0].payload)){
 				console.log("Payload variable is defined");
-				let responseData = response.result.fulfillment.messages[0].payload;
+				responseData = response.result.fulfillment.messages[0].payload;
 				}
 				else {
 				console.log("this is definitely going to be an empty payload.  No value here");				
