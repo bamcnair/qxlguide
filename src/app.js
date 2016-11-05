@@ -47,7 +47,7 @@ function processEvent(event) {
 				let responseData = response.result.fulfillment.messages;
                 let action = response.result.action;
 				
-				if (response.result.fulfillment.messages[0].payload == null  || response.result.fulfillment.messages[0].payload == "undefined" || response.result.fulfillment.messages[0].payload == undefined){
+				if (response.result.fulfillment.messages[0].payload === null  || response.result.fulfillment.messages[0].payload == "undefined" || response.result.fulfillment.messages[0].payload === undefined){
 				console.log("Payload variable is undefined");
 				//responseData = response.result.fulfillment.messages[0].payload;
 				}
@@ -88,7 +88,8 @@ function processEvent(event) {
 				else if (action == "specific_strain"){
 				var strain_name = response.result.parameters.specific_strain;
 				specific_strain(strain_name,sender);
-				}		
+				}	
+
 
 				/* ******************************
 				END OF FIRST ALTERATIOON of Code
