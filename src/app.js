@@ -41,14 +41,14 @@ function processEvent(event) {
         apiaiRequest.on('response', (response) => {
             if (isDefined(response.result)) {
 				
-			console.log(response.result.fulfillment.messages.payload);		
+
                 let responseText = response.result.fulfillment.speech; 
 				//THIS is how it parses JSON returns from API.ai
                 //let responseData = response.result.fulfillment.data;	
 				let responseData = response.result.fulfillment.messages;
                 let action = response.result.action;
 				
-				if ((response.result.fulfillment.messages)){
+				if ((responseData && responseData[0].payload)){
 				console.log("Payload variable is undefined");
 				//responseData = response.result.fulfillment.messages[0].payload;
 				}
