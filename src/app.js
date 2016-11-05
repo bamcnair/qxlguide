@@ -59,6 +59,7 @@ function processEvent(event) {
 				
 				if (action = "event_search"){
 				let responseData = response.result.fulfillment.messages[0].payload;
+				console.log("response data variable should have been set here");
 				}
 				
 				/*
