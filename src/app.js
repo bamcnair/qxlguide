@@ -45,12 +45,12 @@ function processEvent(event) {
                 let responseText = response.result.fulfillment.speech; 
 				//THIS is how it parses JSON returns from API.ai
                 //let responseData = response.result.fulfillment.data;	
-				let responseData = response.result.fulfillment.messages;
+				let payloadData = response.result.fulfillment.messages;
                 let action = response.result.action;
 				
-				if ((responseData && responseData[0].payload)){
-				console.log("Payload variable is undefined");
-				//responseData = response.result.fulfillment.messages[0].payload;
+				if ((payloadData && payloadData[0].payload)){
+				console.log("Payload variable is defined");
+				let responseData = response.result.fulfillment.messages[0].payload;
 				}
 				else {
 				console.log("this is definitely going to be an empty payload.  No value here");				
