@@ -563,6 +563,9 @@ function specific_strain(cr_strain,cr_senduser){
 
 				var elementscr = [];
 				var messageDatacr = [];
+				
+				console.log("this is the strain name  " + cr_strain);
+				console.log("this is the send user " + cr_senduser);
 
 		request({
 		  url: 'https://www.cannabisreports.com/api/v1.0/strains/search/'+cr_strain,   //change back from specific strain
@@ -580,6 +583,10 @@ function specific_strain(cr_strain,cr_senduser){
 				var cr1 = cr_respond.data;
 				var numofstrains = cr_respond.meta.pagination.total;
 
+				console.log("is is the JSON " + cr1);
+				console.log("this is the stringified JSON " + JSON.stringify(cr_respond));
+				console.log("this is the number of strains "  + numofstrains);
+				
 				if (numofstrains <=0)  {
 					//find some way to inform my NLP that the strains are zero & write multiple responses for it
 					//context.sendResponse("Eventbrite returned zero strains in this area, unfortunately");
@@ -597,7 +604,7 @@ function specific_strain(cr_strain,cr_senduser){
 				
 				}
 				else if(numofstrains >=12){
-				//Sets a large number of strains to 7 as to not return an annoying amount of results and stuff.  You know?  Of course you do.
+				//Sets a large number of strains to 12 as to not return an annoying amount of results and stuff.  You know?  Of course you do.
 				//Also formats results as a carousel so users can easily find more information.  
 						numofstrains = 12;
 						
