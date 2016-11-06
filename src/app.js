@@ -563,8 +563,8 @@ function specific_strain(cr_strain,cr_senduser){
 				console.log("Name BEFORE the replace function is " + cr_strain);
 				var elementscr = [];
 				var messageDatacr = [];
-				cr_strain = cr_strain.replace(" ","%20")
-				console.log("Name AFTER the replace function is " + cr_strain);
+				//cr_strain = cr_strain.replace(" ","%20")
+				//console.log("Name AFTER the replace function is " + cr_strain);
 				
 		request({
 		  url: 'https://www.cannabisreports.com/api/v1.0/strains/search/'+cr_strain,   //change back from specific strain
