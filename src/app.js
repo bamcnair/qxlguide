@@ -561,7 +561,7 @@ function specific_strain(cr_strain,cr_senduser){
 //grab the strain name from the user input, conduct a search, and present the options to the user to find out more about
 
 				console.log("Name BEFORE the replace function is " + cr_strain);
-				var elementscr = [];
+				var elementscr = []; 
 				var messageDatacr = [];
 				//cr_strain = cr_strain.replace(" ","%20")
 				//console.log("Name AFTER the replace function is " + cr_strain);
