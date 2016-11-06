@@ -594,6 +594,7 @@ function specific_strain(cr_strain,cr_senduser){
                    // sendFBMessage(sender, {text: 'Unfortunately we did not find any strains'});					
 					//return;
 					console.log("We didn't find any strains for that name " + numofstrains);
+					return;
 					}
 				else if(numofstrains == 1){
 				
