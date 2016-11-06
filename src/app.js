@@ -562,11 +562,6 @@ function specific_strain(cr_strain,cr_senduser){
 
 				var elementscr = [];
 				var messageDatacr = [];
-				
-				cr_strain = "og kush";
-				console.log("this is the strain name  " + cr_strain);
-				console.log("this is the send user " + cr_senduser);
-
 
 		request({
 		  url: 'https://www.cannabisreports.com/api/v1.0/strains/search/'+cr_strain,   //change back from specific strain
