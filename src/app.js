@@ -456,7 +456,7 @@ function event_eventbrite(location, senduser){
 						}
 					  };
 					  callSendAPIstructured(messageData);
-					  
+					  console.log("this is the message data from the strain api call " +messageData);
 			 });	 
 }
 
