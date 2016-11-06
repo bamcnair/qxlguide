@@ -563,7 +563,7 @@ function specific_strain(cr_strain,cr_senduser){
 				var elementscr = [];
 				var messageDatacr = [];
 				
-				cr_strain = "og%20kush";
+				cr_strain = "og kush";
 				console.log("this is the strain name  " + cr_strain);
 				console.log("this is the send user " + cr_senduser);
 
