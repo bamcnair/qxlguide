@@ -607,7 +607,7 @@ function specific_strain(cr_strain,cr_senduser){
 				}
 
 					for(var is=0;is<numofstrains;is++){
-						var simage = cr1[is].image;
+						var simage = cr1[is].image; 
 						var sname = cr1[is].name;
 						var slink = cr1[is].url;
 						
