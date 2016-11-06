@@ -612,6 +612,7 @@ function specific_strain(cr_strain,cr_senduser){
 						var slink = cr1[is].url;
 						
 					console.log("this is the image url " + simage);
+					console.log("this is the index " + numofstrains);
 					if (simage = "https://www.cannabisreports.com/images/strains/no_image.png"){
 						simage = "http://brianamwilliams.com/bamw/wp-content/uploads/2016/05/watchlook-apr16.png";
 						}
