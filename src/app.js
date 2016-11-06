@@ -611,8 +611,8 @@ function specific_strain(cr_strain,cr_senduser){
 						var sname = cr1[is].name;
 						var slink = cr1[is].url;
 						
-					console.log("this is the image url " + simage);
-					console.log("this is the index " + numofstrains);
+					console.log("this is the image url " + is);
+					console.log("this is the index before logic" + numofstrains);
 					if (simage = "https://www.cannabisreports.com/images/strains/no_image.png"){
 						simage = "http://brianamwilliams.com/bamw/wp-content/uploads/2016/05/watchlook-apr16.png";
 						}
@@ -628,6 +628,7 @@ function specific_strain(cr_strain,cr_senduser){
 								  title: "More Info"
 								  }]
 						});
+											console.log("this is the index after logic" + is);
 					}
 					messageDatacr = {
 						recipient: {
