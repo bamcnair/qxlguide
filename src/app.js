@@ -563,7 +563,7 @@ function specific_strain(cr_strain,cr_senduser){
 				console.log("Name BEFORE the replace function is " + cr_strain);
 				var elementscr = [];
 				var messageDatacr = [];
-				cr_strain = str.replace(" ","%20")
+				cr_strain = cr_strain.replace(" ","%20")
 				console.log("Name AFTER the replace function is " + cr_strain);
 				
 		request({
