@@ -584,6 +584,8 @@ function specific_strain(cr_strain,cr_senduser){
 				
 				console.log("the body output output " + body);
 				console.log("the JSON parse output "  + cr_respond);
+				console.log("the cr1 variable is " + cr1);
+				console.log("the number of strains is " + numberofstrains);
 				
 				if (numofstrains <=0)  {
 					//find some way to inform my NLP that the strains are zero & write multiple responses for it
