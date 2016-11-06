@@ -456,7 +456,6 @@ function event_eventbrite(location, senduser){
 						}
 					  };
 					  callSendAPIstructured(messageData);
-					  console.log("this is the message data from the strain api call " +messageData);
 			 });	 
 }
 
@@ -582,10 +581,6 @@ function specific_strain(cr_strain,cr_senduser){
 				var cr_respond = JSON.parse(body); 
 				var cr1 = cr_respond.data;
 				var numofstrains = cr_respond.meta.pagination.total;
-
-				console.log("is is the JSON " + cr1);
-				console.log("this is the stringified JSON " + JSON.stringify(cr_respond));
-				console.log("this is the number of strains "  + numofstrains);
 				
 				if (numofstrains <=0)  {
 					//find some way to inform my NLP that the strains are zero & write multiple responses for it
@@ -607,7 +602,7 @@ function specific_strain(cr_strain,cr_senduser){
 				//Sets a large number of strains to 12 as to not return an annoying amount of results and stuff.  You know?  Of course you do.
 				//Also formats results as a carousel so users can easily find more information.  
 						numofstrains = 12;
-						
+				}
 					for(var is=0;is<numofstrains;is++){
 						var simage = cr1[is].image;
 						var sname = cr1[is].name;
@@ -644,7 +639,6 @@ function specific_strain(cr_strain,cr_senduser){
 						}
 					  };
 					  callSendAPIstructured(messageDatacr);
-					 }
 					}					 
 			 });								
 }
