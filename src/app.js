@@ -609,6 +609,12 @@ function specific_strain(cr_strain,cr_senduser){
 				//Also formats results as a carousel so users can easily find more information.  
 						numofstrains = 12;
 				}
+
+				console.log("the body output " + body);
+				console.log("the JSON parse output "  + cr_respond);
+				console.log("the cr1 variable is " + cr1);
+				console.log("the number of strains is " + numofstrains);
+				
 					for(var is=0;is<numofstrains;is++){
 						var simage = cr1[is].image;
 						var sname = cr1[is].name;
