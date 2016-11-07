@@ -614,8 +614,8 @@ function specific_strain(cr_strain,cr_senduser){
 					console.log("this is the image url " + simage);
 					console.log("this is the index before logic" + is);
 					console.log("this is the number of strains before logic" + numofstrains);
-					if (simage = "https://www.cannabisreports.com/images/strains/no_image.png"){
-						simage = "http://brianamwilliams.com/bamw/wp-content/uploads/2016/05/watchlook-apr16.png";
+					if (simage == 'https://www.cannabisreports.com/images/strains/no_image.png'){
+						simage = 'http://brianamwilliams.com/bamw/wp-content/uploads/2016/05/watchlook-apr16.png';
 						}
 
 						elementscr.push({
