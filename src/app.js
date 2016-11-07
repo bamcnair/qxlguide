@@ -600,10 +600,10 @@ function specific_strain(cr_strain,cr_senduser){
 				else if(numofstrains == 1){
 				
 				}
-				else if(numofstrains >=12){
-				//Sets a large number of strains to 12 as to not return an annoying amount of results and stuff.  You know?  Of course you do.
+				else if(numofstrains >=10){
+				//Sets a large number of strains to 10 as to not return an annoying amount of results and stuff.  You know?  Of course you do.
 				//Also formats results as a carousel so users can easily find more information.  
-						numofstrains = 12;
+						numofstrains = 10;
 				}
 
 					for(var is=0;is<numofstrains - 1;is++){
@@ -612,7 +612,8 @@ function specific_strain(cr_strain,cr_senduser){
 						var slink = cr1[is].url;
 						
 					console.log("this is the image url " + simage);
-					console.log("this is the index before logic" + numofstrains);
+					console.log("this is the index before logic" + is);
+					console.log("this is the number of strains before logic" + numofstrains);
 					if (simage = "https://www.cannabisreports.com/images/strains/no_image.png"){
 						simage = "http://brianamwilliams.com/bamw/wp-content/uploads/2016/05/watchlook-apr16.png";
 						}
