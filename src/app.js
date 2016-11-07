@@ -264,7 +264,7 @@ function strain_menu(recipientId) {
           elements: [{
             title: "How Would You Like to Search?",
             subtitle: "Search for cannabis strains by keyword or medical need",              
-            image_url: "https://upload.wikimedia.org/wikipedia/commons/thumb/9/90/JfTabon%2C_San_Isidro%2C_Nueva_Ecijalands0088fvf_04.JPG/640px-JfTabon%2C_San_Isidro%2C_Nueva_Ecijalands0088fvf_04.JPG",
+            image_url: "https://pixabay.com/static/uploads/photo/2012/04/14/14/45/marijuana-34178_960_720.png",  //replace with the company logo when its time.
             buttons: [{
               type: "postback",
               title: "By Keyword",
@@ -425,7 +425,7 @@ function event_eventbrite(location, senduser){
 						var elink = bb1.events[ie].url;
 
 							if(!eimage){
-								bb1.events[ie].logo.url = "https://lh3.googleusercontent.com/4bh7BjYBV7S5fHX6_slB_tUfzl9-oTqUdWotoG5QMMLjM6z3BQe73I35aYfCB9J70tDPuxpbJ0Fnsk996nSVIeIWTSLLSJO6KbK7_NZrY4-KGAXkdGJmt1PINHZfOy5b49FzMfreYpwYSa_Td8bys50icZFaFTQVU7f1m3WHh-8PgxscQXDE-dNtvPHtcZQmdG9sAyqZ9fEPCQx6NyvcskkETvy_K8-xqMKhEseXbt5a5cvsTtNkTDLUXco6Lqp1RId5WUQnLpIQ_h1IiJDhRD4jtmP-I9L5P8GB0kWUmjCwQzqUu8UozFjArsGlPGfoL_OgFBl6yyImoEs5rSA6svqjzieAXnKfKu7CBX1mmw_MDjMHcb16UEAKG0foZ69Vk3mNpvl_Kf2Z-l93zzPjNrf3_re35HZ1_YRyPI1snWuc_mW4_kUml0rG8qoaRgx7tDiSlZTOGyyRggNTf6cRoZofo2n6Z43Sirsoqbdo6BG8w4MIGOHwE0dJWL3AQxgfO0QZjQzz_HgVRJ_iHx9X23hh0APZgd-ZBDVXu1oyYJRJR030EXGnjvMQDR-QDBHDfG95Xnta3vutS2Blib-y9CPpF66YzvJQdGvGNAAMiVORoR4=w1660-h768-no";
+								bb1.events[ie].logo.url = "https://pixabay.com/static/uploads/photo/2012/04/14/14/45/marijuana-34178_960_720.png";
 								//CHANGE THIS TO myTHCGuide logo once we choose one!
 							}
 						elementsar.push({
@@ -522,7 +522,7 @@ function event_meetup(mcity, mzipcode, senduser){
 								title: mtitle,
 								//subtitle: mdate,
 								item_url: mlink,               
-								image_url: 'https://lh3.googleusercontent.com/4bh7BjYBV7S5fHX6_slB_tUfzl9-oTqUdWotoG5QMMLjM6z3BQe73I35aYfCB9J70tDPuxpbJ0Fnsk996nSVIeIWTSLLSJO6KbK7_NZrY4-KGAXkdGJmt1PINHZfOy5b49FzMfreYpwYSa_Td8bys50icZFaFTQVU7f1m3WHh-8PgxscQXDE-dNtvPHtcZQmdG9sAyqZ9fEPCQx6NyvcskkETvy_K8-xqMKhEseXbt5a5cvsTtNkTDLUXco6Lqp1RId5WUQnLpIQ_h1IiJDhRD4jtmP-I9L5P8GB0kWUmjCwQzqUu8UozFjArsGlPGfoL_OgFBl6yyImoEs5rSA6svqjzieAXnKfKu7CBX1mmw_MDjMHcb16UEAKG0foZ69Vk3mNpvl_Kf2Z-l93zzPjNrf3_re35HZ1_YRyPI1snWuc_mW4_kUml0rG8qoaRgx7tDiSlZTOGyyRggNTf6cRoZofo2n6Z43Sirsoqbdo6BG8w4MIGOHwE0dJWL3AQxgfO0QZjQzz_HgVRJ_iHx9X23hh0APZgd-ZBDVXu1oyYJRJR030EXGnjvMQDR-QDBHDfG95Xnta3vutS2Blib-y9CPpF66YzvJQdGvGNAAMiVORoR4=w1660-h768-no', //mimage,
+								image_url: 'https://pixabay.com/static/uploads/photo/2012/04/14/14/45/marijuana-34178_960_720.png', //mimage,
 								buttons: [{
 								  type: "web_url",
 								  url: mlink,
@@ -611,11 +611,9 @@ function specific_strain(cr_strain,cr_senduser){
 						var sname = cr1[is].name;
 						var slink = cr1[is].url;
 						
-					console.log("this is the image url " + simage);
-					console.log("this is the index before logic" + is);
-					console.log("this is the number of strains before logic" + numofstrains);
 					if (simage == 'https://www.cannabisreports.com/images/strains/no_image.png'){
-						simage = 'http://brianamwilliams.com/bamw/wp-content/uploads/2016/05/watchlook-apr16.png';
+						simage = 'https://pixabay.com/static/uploads/photo/2012/04/14/14/45/marijuana-34178_960_720.png';
+						//Replace with the company logo when we are prepared
 						}
 
 						elementscr.push({
@@ -629,7 +627,6 @@ function specific_strain(cr_strain,cr_senduser){
 								  title: "More Info"
 								  }]
 						});
-											console.log("this is the index after logic" + is);
 					}
 					messageDatacr = {
 						recipient: {
