@@ -328,7 +328,7 @@ function isDefined(obj) {
         return false;
     }
 
-    return obj !== null;
+    return obj != null;
 }
 
 const app = express();
