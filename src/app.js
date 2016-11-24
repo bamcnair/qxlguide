@@ -20,6 +20,26 @@ const FB_PAGE_ACCESS_TOKEN = process.env.FB_PAGE_ACCESS_TOKEN;
 const apiAiService = apiai(APIAI_ACCESS_TOKEN, {language: APIAI_LANG, requestSource: "fb"});
 const sessionIds = new Map();
 
+const DATABASE_URL = 'postgres://oakumnucezzlzg:HUWRoevSG6AWhpuVSkqGh5HkzO@ec2-54-235-208-3.compute-1.amazonaws.com:5432/d4ctqr7gbk3nul'
+
+//  This code is meant to connect the app to our postgresql database when the app initializes
+
+var pg = require('pg');
+
+pg.defaults.ssl = true;
+pg.connect(process.env.DATABASE_URL, function(err, client) {
+  if (err) throw err;
+  console.log('Connected to postgres! Getting schemas...');
+
+  client
+    .query('SELECT table_schema,table_name FROM information_schema.tables;')
+    .on('row', function(row) {
+      console.log(JSON.stringify(row));
+    });
+});
+
+//Code example captured from https://devcenter.heroku.com/articles/heroku-postgresql#connecting-in-node-js
+
 function processEvent(event) {
     var sender = event.sender.id.toString(); //this is the person who is using the chatbot
 
@@ -644,6 +664,13 @@ function specific_strain(cr_strain,cr_senduser){
 			 });								
 }
 
+/***
+Make a function, or set of functions in cooperation with API.AI to make a weed strain reccomender.  So we ask them about experiences like "How do you want to feel?" and we give them 3 options with a quick reply.
+then after that, we ask them about what kind of high they want to feel, like a body high, head high, or both.  Then ask them what kind of sensation do they want.  like a euphoria, a giddyness, sleepiness, energy
+etc.  And then we get them a set of kinds of weed that produces that result.  We then give them a way to buy it after they make their selection.  Then we tell them who has it, and allow them to reserve it.  If they reserve,
+their information goes to the dispensary, in a concealed email address, 
+
+***/
 
 /**
 This method is to find a condition that a particular cannabis strain can help treat medically.  The user provides the condition, and we 
