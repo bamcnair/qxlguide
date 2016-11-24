@@ -20,25 +20,7 @@ const FB_PAGE_ACCESS_TOKEN = process.env.FB_PAGE_ACCESS_TOKEN;
 const apiAiService = apiai(APIAI_ACCESS_TOKEN, {language: APIAI_LANG, requestSource: "fb"});
 const sessionIds = new Map();
 
-var DATABASE_URL = 'postgres://oakumnucezzlzg:HUWRoevSG6AWhpuVSkqGh5HkzO@ec2-54-235-208-3.compute-1.amazonaws.com:5432/d4ctqr7gbk3nul'
 
-//  This code is meant to connect the app to our postgresql database when the app initializes
-
-var pg = require('pg');
-
-pg.defaults.ssl = true;
-pg.connect(process.env.DATABASE_URL, function(err, client) {
-  if (err) throw err;
-  console.log('Connected to postgres! Getting schemas...');
-
-  /*
-  client
-    .query('SELECT table_schema,table_name FROM information_schema.tables;')
-    .on('row', function(row) {
-      console.log(JSON.stringify(row));
-    });
-	*/
-});
 
 //Code example captured from https://devcenter.heroku.com/articles/heroku-postgresql#connecting-in-node-js
 
