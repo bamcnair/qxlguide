@@ -1,9 +1,8 @@
 {
-  "name": "API.AI Facebook integration",
-  "description": "Api.ai Facebook integration allows you to create Facebook bots with natural language understanding based on Api.ai technology.",
-  "repository": "https://github.com/api-ai/api-ai-facebook",
-  "logo": "http://xvir.github.io/img/apiai.png",
-  "keywords": ["api.ai", "facebook", "natural language"],
+  "name": "My THC Guide",
+  "description": "My THC Guide Facebook chatbot integration",
+  "repository": "https://github.com/",
+  "keywords": ["facebook", "natural language"],
   "env": {
     "APIAI_ACCESS_TOKEN": {
       "description": "Client access token for Api.ai",
