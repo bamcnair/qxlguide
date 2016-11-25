@@ -1,5 +1,6 @@
 'use strict';
 // set of constants that will create the conditions needed for the API.ai based chat bot to work
+// 11-4 
 
 const apiai = require('apiai');
 const express = require('express');
@@ -20,26 +21,6 @@ const FB_PAGE_ACCESS_TOKEN = process.env.FB_PAGE_ACCESS_TOKEN;
 const apiAiService = apiai(APIAI_ACCESS_TOKEN, {language: APIAI_LANG, requestSource: "fb"});
 const sessionIds = new Map();
 
-//  This code is meant to connect the app to our postgresql database when the app initializes
-const DATABASE_URL = 'postgres://oakumnucezzlzg:HUWRoevSG6AWhpuVSkqGh5HkzO@ec2-54-235-208-3.compute-1.amazonaws.com:5432/d4ctqr7gbk3nul'
-
-var pg = require('pg');
-
-pg.defaults.ssl = true;
-pg.connect(process.env.DATABASE_URL, function(err, client) {
-  if (err) throw err;
-  console.log('Connected to postgres! Getting schemas...');
-
-   
-  client
-    .query('SELECT table_schema,table_name FROM information_schema.tables;')
-    .on('row', function(row) {
-      console.log(JSON.stringify(row));
-    });
-});
-
-//Code example captured from https://devcenter.heroku.com/articles/heroku-postgresql#connecting-in-node-js
-
 function processEvent(event) {
     var sender = event.sender.id.toString(); //this is the person who is using the chatbot
 
@@ -51,7 +32,7 @@ function processEvent(event) {
             sessionIds.set(sender, uuid.v1());
         }
 
-        console.log("Text", text); 
+        console.log("Text", text);
 
         let apiaiRequest = apiAiService.textRequest(text,
             {
@@ -60,25 +41,21 @@ function processEvent(event) {
 
         apiaiRequest.on('response', (response) => {
             if (isDefined(response.result)) {
-				
-
+					
                 let responseText = response.result.fulfillment.speech; 
 				//THIS is how it parses JSON returns from API.ai
                 //let responseData = response.result.fulfillment.data;	
-				let payloadData = response.result.fulfillment.messages;
+				let responseData = response.result.fulfillment.messages;
                 let action = response.result.action;
-				var responseData = "";
 				
-				if ((payloadData && payloadData[0].payload)){
-				console.log("Payload variable is defined");
-				responseData = response.result.fulfillment.messages[0].payload;
+				if (response.result.fulfillment.messages != null){
+				console.log("this is not an empty payload.  There is a value here");
 				}
 				else {
 				console.log("this is definitely going to be an empty payload.  No value here");				
 				 //   let responseData = response.result.fulfillment.messages[0].payload;	
 				//This insertion for responseData is to get cards, quick replies, images, and others from API.ai for use in FB, Kik, Telegram, Slack via Custom Payloads 11-04-16
 				}
-
 				
 				/*
 				First Alteration of code.  Adding if action = find_event then alter the response text.
@@ -110,8 +87,7 @@ function processEvent(event) {
 				else if (action == "specific_strain"){
 				var strain_name = response.result.parameters.specific_strain;
 				specific_strain(strain_name,sender);
-				}	
-
+				}		
 
 				/* ******************************
 				END OF FIRST ALTERATIOON of Code
@@ -284,7 +260,7 @@ function strain_menu(recipientId) {
           elements: [{
             title: "How Would You Like to Search?",
             subtitle: "Search for cannabis strains by keyword or medical need",              
-            image_url: "https://pixabay.com/static/uploads/photo/2012/04/14/14/45/marijuana-34178_960_720.png",  //replace with the company logo when its time.
+            image_url: "https://upload.wikimedia.org/wikipedia/commons/thumb/9/90/JfTabon%2C_San_Isidro%2C_Nueva_Ecijalands0088fvf_04.JPG/640px-JfTabon%2C_San_Isidro%2C_Nueva_Ecijalands0088fvf_04.JPG",
             buttons: [{
               type: "postback",
               title: "By Keyword",
@@ -327,7 +303,7 @@ function isDefined(obj) {
         return false;
     }
 
-    return obj != null;
+    return obj !== null;
 }
 
 const app = express();
@@ -444,8 +420,8 @@ function event_eventbrite(location, senduser){
 						var edate = bb1.events[ie].start.local;
 						var elink = bb1.events[ie].url;
 
-							if(!eimage){
-								bb1.events[ie].logo.url = "https://pixabay.com/static/uploads/photo/2012/04/14/14/45/marijuana-34178_960_720.png";
+							if(!bb1.events[ie].logo.url){
+								bb1.events[ie].logo.url = "https://en.wikipedia.org/wiki/Smiley#/media/File:Smiley.svg";
 								//CHANGE THIS TO myTHCGuide logo once we choose one!
 							}
 						elementsar.push({
@@ -476,6 +452,7 @@ function event_eventbrite(location, senduser){
 						}
 					  };
 					  callSendAPIstructured(messageData);
+					  
 			 });	 
 }
 
@@ -542,7 +519,7 @@ function event_meetup(mcity, mzipcode, senduser){
 								title: mtitle,
 								//subtitle: mdate,
 								item_url: mlink,               
-								image_url: 'https://pixabay.com/static/uploads/photo/2012/04/14/14/45/marijuana-34178_960_720.png', //mimage,
+								image_url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/9/90/JfTabon%2C_San_Isidro%2C_Nueva_Ecijalands0088fvf_04.JPG/640px-JfTabon%2C_San_Isidro%2C_Nueva_Ecijalands0088fvf_04.JPG', //mimage,
 								buttons: [{
 								  type: "web_url",
 								  url: mlink,
@@ -580,9 +557,9 @@ function specific_strain(cr_strain,cr_senduser){
 
 //grab the strain name from the user input, conduct a search, and present the options to the user to find out more about
 
-				var elementscr = []; 
-				var messageDatacr = []; 
-				
+				var elementscr = [];
+				var messageDatacr = [];
+
 		request({
 		  url: 'https://www.cannabisreports.com/api/v1.0/strains/search/'+cr_strain,   //change back from specific strain
             headers: {
@@ -599,7 +576,6 @@ function specific_strain(cr_strain,cr_senduser){
 				var cr1 = cr_respond.data;
 				var numofstrains = cr_respond.meta.pagination.total;
 
-				
 				if (numofstrains <=0)  {
 					//find some way to inform my NLP that the strains are zero & write multiple responses for it
 					//context.sendResponse("Eventbrite returned zero strains in this area, unfortunately");
@@ -611,26 +587,22 @@ function specific_strain(cr_strain,cr_senduser){
 					*/
                    // sendFBMessage(sender, {text: 'Unfortunately we did not find any strains'});					
 					//return;
-					console.log("We didn't find any strains for that name " + numofstrains);
-					return;
 					}
 				else if(numofstrains == 1){
 				
 				}
-				else if(numofstrains >=10){
-				//Sets a large number of strains to 10 as to not return an annoying amount of results and stuff.  You know?  Of course you do.
+				else if(numofstrains >=12){
+				//Sets a large number of strains to 7 as to not return an annoying amount of results and stuff.  You know?  Of course you do.
 				//Also formats results as a carousel so users can easily find more information.  
-						numofstrains = 10;
-				}
-
-					for(var is=0;is<numofstrains - 1;is++){
-						var simage = cr1[is].image; 
+						numofstrains = 12;
+						
+					for(var is=0;is<numofstrains;is++){
+						var simage = cr1[is].image;
 						var sname = cr1[is].name;
 						var slink = cr1[is].url;
 						
-					if (simage == 'https://www.cannabisreports.com/images/strains/no_image.png'){
-						simage = 'https://pixabay.com/static/uploads/photo/2012/04/14/14/45/marijuana-34178_960_720.png';
-						//Replace with the company logo when we are prepared
+						if (simage = "https://www.cannabisreports.com/images/strains/no_image.png"){
+						simage = "https://lh3.googleusercontent.com/4bh7BjYBV7S5fHX6_slB_tUfzl9-oTqUdWotoG5QMMLjM6z3BQe73I35aYfCB9J70tDPuxpbJ0Fnsk996nSVIeIWTSLLSJO6KbK7_NZrY4-KGAXkdGJmt1PINHZfOy5b49FzMfreYpwYSa_Td8bys50icZFaFTQVU7f1m3WHh-8PgxscQXDE-dNtvPHtcZQmdG9sAyqZ9fEPCQx6NyvcskkETvy_K8-xqMKhEseXbt5a5cvsTtNkTDLUXco6Lqp1RId5WUQnLpIQ_h1IiJDhRD4jtmP-I9L5P8GB0kWUmjCwQzqUu8UozFjArsGlPGfoL_OgFBl6yyImoEs5rSA6svqjzieAXnKfKu7CBX1mmw_MDjMHcb16UEAKG0foZ69Vk3mNpvl_Kf2Z-l93zzPjNrf3_re35HZ1_YRyPI1snWuc_mW4_kUml0rG8qoaRgx7tDiSlZTOGyyRggNTf6cRoZofo2n6Z43Sirsoqbdo6BG8w4MIGOHwE0dJWL3AQxgfO0QZjQzz_HgVRJ_iHx9X23hh0APZgd-ZBDVXu1oyYJRJR030EXGnjvMQDR-QDBHDfG95Xnta3vutS2Blib-y9CPpF66YzvJQdGvGNAAMiVORoR4=w1660-h768-no";
 						}
 
 						elementscr.push({
@@ -660,17 +632,11 @@ function specific_strain(cr_strain,cr_senduser){
 						}
 					  };
 					  callSendAPIstructured(messageDatacr);
+					 }
 					}					 
 			 });								
 }
 
-/***
-Make a function, or set of functions in cooperation with API.AI to make a weed strain reccomender.  So we ask them about experiences like "How do you want to feel?" and we give them 3 options with a quick reply.
-then after that, we ask them about what kind of high they want to feel, like a body high, head high, or both.  Then ask them what kind of sensation do they want.  like a euphoria, a giddyness, sleepiness, energy
-etc.  And then we get them a set of kinds of weed that produces that result.  We then give them a way to buy it after they make their selection.  Then we tell them who has it, and allow them to reserve it.  If they reserve,
-their information goes to the dispensary, in a concealed email address, 
-
-***/
 
 /**
 This method is to find a condition that a particular cannabis strain can help treat medically.  The user provides the condition, and we 
