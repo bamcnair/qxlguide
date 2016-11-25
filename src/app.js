@@ -74,8 +74,7 @@ function processEvent(event) {
 				console.log("Payload variable is defined");
 				responseData = response.result.fulfillment.messages[0].payload;
 				}
-				else {
-				console.log("this is definitely going to be an empty payload.  No value here");				
+				else {	
 				 //   let responseData = response.result.fulfillment.messages[0].payload;	
 				//This insertion for responseData is to get cards, quick replies, images, and others from API.ai for use in FB, Kik, Telegram, Slack via Custom Payloads 11-04-16
 				}
@@ -285,7 +284,7 @@ function strain_menu(recipientId) {
           elements: [{
             title: "How Would You Like to Search?",
             subtitle: "Search for cannabis strains by keyword or medical need",              
-            image_url: "https://pixabay.com/static/uploads/photo/2012/04/14/14/45/marijuana-34178_960_720.png",  //replace with the company logo when its time.
+            image_url: "http://mythcguide.com/images/MyTHCGuide_Color.png",  //replace with the company logo when its time.
             buttons: [{
               type: "postback",
               title: "By Keyword",
@@ -446,7 +445,7 @@ function event_eventbrite(location, senduser){
 						var elink = bb1.events[ie].url;
 
 							if(!eimage){
-								bb1.events[ie].logo.url = "https://pixabay.com/static/uploads/photo/2012/04/14/14/45/marijuana-34178_960_720.png";
+								bb1.events[ie].logo.url = "http://mythcguide.com/images/MyTHCGuide_Color.png";
 								//CHANGE THIS TO myTHCGuide logo once we choose one!
 							}
 						elementsar.push({
@@ -543,7 +542,7 @@ function event_meetup(mcity, mzipcode, senduser){
 								title: mtitle,
 								//subtitle: mdate,
 								item_url: mlink,               
-								image_url: 'https://pixabay.com/static/uploads/photo/2012/04/14/14/45/marijuana-34178_960_720.png', //mimage,
+								image_url: 'http://mythcguide.com/images/MyTHCGuide_Color.png', //mimage,
 								buttons: [{
 								  type: "web_url",
 								  url: mlink,
@@ -630,7 +629,7 @@ function specific_strain(cr_strain,cr_senduser){
 						var slink = cr1[is].url;
 						
 					if (simage == 'https://www.cannabisreports.com/images/strains/no_image.png'){
-						simage = 'https://pixabay.com/static/uploads/photo/2012/04/14/14/45/marijuana-34178_960_720.png';
+						simage = 'http://mythcguide.com/images/MyTHCGuide_Color.png';
 						//Replace with the company logo when we are prepared
 						}
 
