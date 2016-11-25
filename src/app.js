@@ -21,7 +21,6 @@ const apiAiService = apiai(APIAI_ACCESS_TOKEN, {language: APIAI_LANG, requestSou
 const sessionIds = new Map();
 
 //  This code is meant to connect the app to our postgresql database when the app initializes
-
 const DATABASE_URL = 'postgres://oakumnucezzlzg:HUWRoevSG6AWhpuVSkqGh5HkzO@ec2-54-235-208-3.compute-1.amazonaws.com:5432/d4ctqr7gbk3nul'
 
 var pg = require('pg');
