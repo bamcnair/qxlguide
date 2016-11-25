@@ -8,6 +8,7 @@ const uuid = require('node-uuid');
 const request = require('request');
 const JSONbig = require('json-bigint');
 const async = require('async');
+var pg = require('pg');
 
 //Not sure if I need to hard code these elements into the code or if these will "detect" what's needed?
 
@@ -23,7 +24,7 @@ const sessionIds = new Map();
 //  This code is meant to connect the app to our postgresql database when the app initializes
 const DATABASE_URL = 'postgres://oakumnucezzlzg:HUWRoevSG6AWhpuVSkqGh5HkzO@ec2-54-235-208-3.compute-1.amazonaws.com:5432/d4ctqr7gbk3nul'
 
-var pg = require('pg');
+
 
 pg.defaults.ssl = true;
 pg.connect(process.env.DATABASE_URL, function(err, client) {
